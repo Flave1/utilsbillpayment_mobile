@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/itemView"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        app:fontFamily="@font/roboto_regular"
+        android:text="Home meter"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/colorblack"
+        android:id="@+id/meterDetailTV"/>
+
+    <View android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorlightgrey"/>
+
+</LinearLayout>

@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:background="@color/colorPrimary">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/left_arrow"
+            android:id="@+id/imgBack"
+            android:padding="@dimen/_10sdp"
+            android:layout_margin="@dimen/margin8"
+            android:layout_height="wrap_content" />
+
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EDIT METER"
+            android:textColor="@color/colorWhite"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="16sp"
+            android:visibility="visible"
+            android:id="@+id/menuTitle"/>
+    </RelativeLayout>
+
+    <View android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorYellow"/>
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="30dp">
+
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="METER # "
+                        android:textColor="@color/colorlightgrey"
+                        android:fontFamily="@font/roboto_regular"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/colorYellow"
+                        android:fontFamily="@font/roboto_regular"/>
+
+                </LinearLayout>
+
+
+                <EditText android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    android:text=""
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/meterno"
+                    android:gravity="start|top"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/roboto_bold"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:maxLength="11"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/border_lightgrey"
+                    />
+
+
+
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NAME ON METER "
+                        android:textColor="@color/colorlightgrey"
+                        android:fontFamily="@font/roboto_regular"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/colorYellow"
+                        android:fontFamily="@font/roboto_regular"/>
+
+                </LinearLayout>
+
+
+                <EditText android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/metername"
+                    android:gravity="start|top"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/roboto_bold"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/border_lightgrey"
+                    />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ALIAS "
+                        android:textColor="@color/colorlightgrey"
+                        android:fontFamily="@font/roboto_regular"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/colorYellow"
+                        android:fontFamily="@font/roboto_regular"/>
+
+                </LinearLayout>
+
+
+                <EditText android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/alias"
+                    android:gravity="start|top"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/roboto_bold"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/border_lightgrey"
+                    />
+
+
+
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ADDRESS"
+                        android:textColor="@color/colorlightgrey"
+                        android:fontFamily="@font/roboto_regular"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorYellow"
+                        android:fontFamily="@font/roboto_regular"/>
+
+                </LinearLayout>
+
+
+                <EditText android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/address"
+                    android:gravity="start|top"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/roboto_bold"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/border_lightgrey"
+                    />
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="METER MAKE"
+                        android:textColor="@color/colorlightgrey"
+                        android:fontFamily="@font/roboto_regular"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorYellow"
+                        android:fontFamily="@font/roboto_regular"/>
+
+                </LinearLayout>
+
+
+                <TextView android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    android:id="@+id/metermake"
+                    android:layout_marginTop="5dp"
+                    android:gravity="start|top"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text=""
+                    android:maxLines="1"
+                    android:background="@drawable/border_lightgrey"
+                    android:visibility="gone"
+                    />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_lightgrey">
+
+                    <Spinner
+                        android:id="@+id/spMeterMake"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp" />
+
+                </RelativeLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+
+                <CheckBox
+                    android:id="@+id/isVerified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:text="Active" />
+
+
+
+            </LinearLayout>
+
+
+
+            <RelativeLayout android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/button_yellow"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_below="@+id/money"
+                    android:id="@+id/saveTV"
+                    android:text="SAVE"
+                    android:textColor="@color/colorblack"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:layout_marginTop="25dp"/>
+
+
+            </RelativeLayout>
+
+        </LinearLayout></ScrollView>
+
+
+</LinearLayout>

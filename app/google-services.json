@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "110204203934",
+    "firebase_url": "https://vendtech-5cc9f.firebaseio.com",
+    "project_id": "vendtech-5cc9f",
+    "storage_bucket": "vendtech-5cc9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110204203934:android:8bfa752ae1a7548c845c8f",
+        "android_client_info": {
+          "package_name": "com.vendtech.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "110204203934-7smg3mhagsbs8b1hj8o2u19vsh2pifh2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vendtech.app",
+            "certificate_hash": "8c9b79570e538bde5d79c23a08ac7cac11b9a57e"
+          }
+        },
+        {
+          "client_id": "110204203934-1v9dardsaush6v0eea28ds2k63susbfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHsHKaNkvGoJ6FWi1Z7f-cxFtjRqUA1Kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "110204203934-1v9dardsaush6v0eea28ds2k63susbfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

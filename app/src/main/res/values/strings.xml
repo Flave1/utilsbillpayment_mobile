@@ -1,0 +1,141 @@
+<resources>
+    <string name="app_name">VendTech</string>
+    <string name="please_sign_in_to_continue">Please sign in to continue.</string>
+    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="notification_channel_id">com.vendtech.app</string>
+    <string name="channel_name">Vendtech app</string>
+    <string name="channel_description">Vendtech app notifications</string>
+    <string name="terms_condition">I agree to the Terms &amp; Conditions and Privacy Policy</string>
+    <string name="pass_length">Password should be at least 6 characters</string>
+    <string name="address_length">Please enter valid address</string>
+    <string name="first_name_length">First name should be at least 3 characters</string>
+    <string name="last_name_length">Last name should be at least 3 characters</string>
+    <string name="user_name_length">Username should be at least 3 characters</string>
+    <string name="old_pass_length">Old password should be at least 6 characters</string>
+    <string name="new_pass_length">New password should be at least 6 characters</string>
+    <string name="contact_vendtech">Please contact VENDTECH on +232 79 990 990</string>
+    <string name="account_under_approval">Account under approval process</string>
+    <string name="service_not_assigned">Service not assigned</string>
+
+    <string name="saved_meters">SAVED METERS</string>
+    <string name="manage_wallet">MANAGE WALLET</string>
+
+    <string name="total_balance">Total</string>
+
+    <string name="sales_report_filters">SALES REPORT FILTERS</string>
+    <string name="deposite_report_filters">DEPOSIT REPORT FILTERS</string>
+
+
+    <string name="please_enter_passcode">Please enter Passcode </string>
+    <string name="please_enter_new_passcode">Please enter a new Passcode of your choice </string>
+
+    <string name="app_update1">NEW UPDATES AVAILABLE</string>
+
+
+    <string name="enter_otp_message">Please enter the verification code sent to your registered mobile number by SMS.</string>
+    <string-array name="list_test">
+        <item>test1</item>
+        <item>test1</item>
+        <item>test1</item>
+        <item>test1</item>
+    </string-array>
+
+    <string name="dummy_text">What is Lorem Ipsum?
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="save_meter">Saved Meters</string>
+    <string name="save_number">Saved Numbers</string>
+    <string name="manage_reports">MANAGE REPORTS</string>
+    <string name="reset_password">RESET PASSCODE</string>
+    <string name="add_bill_payment">BILL PAYMENT </string>
+    <string name="date">Date</string>
+    <string name="meter">Meter #</string>
+    <string name="meter2">Meter #:</string>
+    <string name="phone">Phone #:</string>
+    <string name="amount">Amount</string>
+    <string name="amount2">Amount:</string>
+    <string name="select_saved_meter">SELECT SAVED METER #</string>
+    <string name="recharge">Recharge</string>
+    <string name="seleted_pos_ids">Selected POS ID</string>
+    <string name="Electricity_purchace">EDSA Electricity purchase</string>
+    <string name="cust_info">Customer Information</string>
+    <string name="dedution">Deductions</string>
+    <string name="total">Total</string>
+
+    <string name="airtimePlatform">AIRTIME PURCHASE</string>
+    
+    <string name="transaction_id">Trans ID:</string>
+    
+    <string name="deposite__notifications">DEPOSITS:</string>
+    <string name="meter_recharge_notifications">METER RECHARGE:</string>
+    <string name="airtime_recharge_notifications">AIRTIME RECHARGE:</string>
+
+    <string name="vendor">Vendor:</string>
+
+    
+    
+    <string name="register">REGISTER</string>
+    <string name="update">CLICK TO UPDATE APP IN PLAYSTORE</string>
+    <string name="pos_id">POS ID</string>
+    <string name="token">TOKEN:</string>
+    <string name="deposite">Deposit:</string>
+    <string name="deposite_ref">Ref#:</string>
+    <string name="new_balance">New Bal:</string>
+    <string name="print">Print</string>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+    the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of
+    type and scrambled it to make a type specimen book. It has survived not only five centuries, but
+    also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
+    in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+    Ipsum.
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+    the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of
+    type and scrambled it to make a type specimen book. It has survived not only five centuries, but
+    also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
+    in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+    Ipsum.
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+    the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of
+    type and scrambled it to make a type specimen book. It has survived not only five centuries, but
+    also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
+    in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+    Ipsum.
+
+
+    <string name="ptintInit">Printer initialing... Please try again after a few seconds.</string>
+    <string name="printing_wait">Printing, please wait……</string>
+    <string name="bl_dy">Print</string>
+    <string name="empty">The content is empty！</string>
+
+    <string name="noPaper">No paper</string>
+    <string name="noPaperNotice">No paper, please put paper in and retry</string>
+    <string name="sure">sure</string>
+
+    <string name="overTemp">over temp !</string>
+    <string name="dialog_comfirm">ConFirm</string>
+
+    <string name="operation_fail">Operation failed</string>
+    <string name="operation_result">Result</string>
+
+    <string name="LowBattery">Low battery, please connect the charger!</string>
+
+
+
+    <string name="f_name">First Name</string>
+    <string name="rep_f_name">REP. First Name</string>
+    <string name="rep_l_name">REP. Last Name</string>
+    <string name="l_name">Last Name</string>
+
+    <string name="maker_not_find">Cannot Find Black Block</string>
+
+    <string name="thank_msg">Thank you for creating your VENDTECH Account.</string>
+    <string name="bill_payments"><![CDATA[<---  BILL PAYMENT (EDSA)]]></string>
+    <string name="save_your_meters"><![CDATA[<---  SAVE YOUR METERS]]></string>
+    <string name="manage_pos"><![CDATA[<---  MANAGE POS (VIEW BALANCE)]]></string>
+    <string name="manage_wallets"><![CDATA[<---  MANAGE WALLET (ADD FUNDS)]]></string>
+    <string name="manage_reports_"><![CDATA[<---  MANAGE REPORTS (VIEW HISTORY)]]></string>
+
+
+</resources>

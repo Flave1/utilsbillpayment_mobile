@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:gravity="center|top"
+        android:paddingLeft="@dimen/_25sdp"
+        android:paddingRight="@dimen/_25sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="WELCOME TO VENDTECH"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/colorWhite"
+            android:padding="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="PLEASE SWIPE FROM LEFT TO SEE MENU"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/bill_payments"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="left"
+            android:padding="@dimen/_2sdp"/>
+        <TextView
+            android:padding="@dimen/_2sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/save_your_meters"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_5sdp"/>
+        <TextView
+            android:padding="@dimen/_2sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/manage_pos"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_5sdp"/>
+        <TextView
+            android:padding="@dimen/_2sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/manage_wallets"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_5sdp"/>
+        <TextView
+            android:padding="@dimen/_2sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/manage_reports_"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_5sdp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

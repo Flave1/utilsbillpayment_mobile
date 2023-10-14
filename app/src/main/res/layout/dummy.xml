@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_2sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/round_chips_home">
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_2sdp"
+            android:paddingRight="@dimen/_2sdp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:id="@+id/meterNumber"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/colorYellow"
+                android:text="#2345121"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_2sdp"
+            android:paddingRight="@dimen/_2sdp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/marker"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="8sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingLeft="5dp"
+                android:paddingStart="5dp"
+                android:paddingRight="5dp"
+                android:id="@+id/address"
+                android:paddingEnd="5dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/colorWhite"
+                android:text="Street 12"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_2sdp"
+            android:paddingRight="@dimen/_2sdp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/calender"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="8sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingLeft="5dp"
+                android:id="@+id/date"
+                android:paddingStart="5dp"
+                android:paddingRight="5dp"
+                android:paddingEnd="5dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/colorWhite"
+                android:text="20 June,19"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/_2sdp"
+            android:paddingRight="@dimen/_2sdp"
+            android:id="@+id/ll_delete"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/iv_recharge"
+                android:layout_width="30dp"
+                android:visibility="visible"
+                android:layout_height="30dp"
+                android:padding="2dp"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@drawable/ic_recharge" />
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="30dp"
+                android:visibility="visible"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:tint="@color/colorred"
+                android:src="@drawable/delete" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

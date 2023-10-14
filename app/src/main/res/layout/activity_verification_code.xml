@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/padding16"
+    tools:context="com.vendtech.app.ui.activity.authentication.VerificationCodeActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/logo_sm" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:padding="@dimen/padding4"
+        android:textSize="@dimen/_20"
+        android:layout_marginTop="@dimen/_25dp"
+        android:text="Verification Code"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin16"
+        android:layout_marginRight="@dimen/margin16"
+        android:fontFamily="@font/medium"
+        android:gravity="center"
+        android:text="@string/enter_otp_message"
+        android:textAlignment="center"
+        android:textColor="@color/colorlightPrimary" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin16"
+        android:padding="@dimen/padding16">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/boarder_lightprimary"
+            android:padding="@dimen/padding8">
+
+            <EditText
+                android:id="@+id/etOne"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:background="@null"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:text=""
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/margin16"
+            android:background="@drawable/boarder_lightprimary"
+            android:padding="@dimen/padding8">
+
+            <EditText
+                android:layout_width="30dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp"
+                android:id="@+id/etTwo"
+                android:layout_height="wrap_content"
+                android:height="30dp"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:maxLength="1"
+                android:inputType="number"
+                android:background="@null" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/margin16"
+            android:background="@drawable/boarder_lightprimary"
+            android:padding="@dimen/padding8">
+
+            <EditText
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:id="@+id/etThree"
+                android:inputType="number"
+                android:maxLength="1"
+                android:background="@null" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/margin16"
+            android:background="@drawable/boarder_lightprimary"
+            android:padding="@dimen/padding8">
+
+            <EditText
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp"
+                android:maxLength="1"
+                android:gravity="center"
+                android:text=""
+                android:inputType="number"
+                android:layout_centerInParent="true"
+                android:textAlignment="center"
+                android:id="@+id/etFour"
+                android:background="@null" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_25dp"
+        android:layout_marginRight="@dimen/_25dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/corner_yello"
+        android:fontFamily="@font/medium"
+        android:padding="@dimen/padding16"
+        android:text="Submit"
+        android:gravity="center"
+        android:id="@+id/txtSubmit"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/colorYellow"
+        android:fontFamily="@font/medium"
+        android:text=" Resend OTP"
+        android:gravity="center"
+        android:id="@+id/resendOTPTV"
+        android:padding="@dimen/padding16"
+        android:layout_height="wrap_content" />
+</LinearLayout>

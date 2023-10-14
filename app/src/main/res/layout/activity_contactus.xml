@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:background="@color/colorPrimary">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/left_arrow"
+            android:id="@+id/imgBack"
+          android:padding="@dimen/_10sdp"
+            android:layout_margin="@dimen/margin8"
+            android:layout_height="wrap_content" />
+
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONTACT US"
+            android:textColor="@color/colorWhite"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="16sp"
+            android:visibility="visible"
+            android:id="@+id/menuTitle"/>
+    </RelativeLayout>
+
+    <View android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorYellow"/>
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="30dp">
+
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SUBJECT"
+                        android:textColor="@color/colorlightgrey"
+                        android:fontFamily="@font/roboto_regular"/>
+
+
+                </LinearLayout>
+
+
+                <EditText android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    android:text=""
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/subjectET"
+                    android:gravity="start|top"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/roboto_bold"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/border_lightgrey"
+                    />
+
+
+
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MESSAGE"
+                        android:textColor="@color/colorlightgrey"
+                        android:fontFamily="@font/roboto_regular"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/border_lightgrey">
+
+                    <EditText android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="13dp"
+                        android:paddingBottom="13dp"
+                        android:paddingLeft="13dp"
+                        android:gravity="start|top"
+                        android:textSize="15sp"
+                        android:imeOptions="actionDone"
+                        android:fontFamily="@font/roboto_bold"
+                        android:paddingStart="13dp"
+                        android:text=""
+                        android:inputType="textMultiLine"
+                        android:id="@+id/commentET"
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorlightgrey"
+                        android:paddingRight="13dp"
+                        android:background="@android:color/transparent"
+                        android:paddingEnd="13dp"
+                        android:drawablePadding="3dp"
+                        >
+                    </EditText>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+            <RelativeLayout android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/button_yellow"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginRight="50dp"
+                    android:id="@+id/sendTV"
+                    android:text="SEND"
+                    android:textColor="@color/colorblack"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:layout_marginTop="25dp"/>
+
+
+            </RelativeLayout>
+
+        </LinearLayout></ScrollView>
+
+
+</LinearLayout>

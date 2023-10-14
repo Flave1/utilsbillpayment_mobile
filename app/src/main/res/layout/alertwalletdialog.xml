@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/liner_main"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="DUPLICATE DEPOSIT ALERT"
+        android:textColor="@color/colorred"
+        android:textSize="@dimen/_20"
+        android:id="@+id/tv_title"
+        android:textAlignment="center"
+        android:layout_weight="1"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:background="@null"
+        android:src="@drawable/ic_close"
+        android:scaleType="fitCenter"
+        android:padding="@dimen/_7sdp"
+        android:visibility="gone"
+        android:id="@+id/img_close"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_20"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="13dp"
+            android:gravity="center"
+            android:text="YOU HAVE DEPOSITS WAITING APPROVAL!"
+           />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvpending"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:text="NLe: 2000"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:text="YOU CANNOT DO ANOTHER DEPOSIT UNTIL THE"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:text="PENDING DEPOSIT IS APPROVED"
+            />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/_20">
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_continue"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:visibility="invisible"-->
+<!--            android:text="PROCEED"-->
+<!--            android:width="@dimen/_242sdp"-->
+<!--            android:padding="@dimen/_9ssp"-->
+<!--            android:background="@color/colorYellow"-->
+<!--            android:layout_height="wrap_content"/>-->
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:textSize="15dp"
+            android:text="CANCEL"
+            android:visibility="visible"
+            android:textAlignment="center"
+            android:textColor="@color/mdtp_white"
+            android:padding="@dimen/_9ssp"
+            android:background="@color/gray_clr"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,1113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+
+
+    <ScrollView
+        android:id="@+id/layoutAddBalance"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_20sdp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:padding="10dp"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/menuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text=""
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:visibility="visible" />
+
+
+                <ImageView
+                    android:id="@+id/imgEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/margin8"
+                    android:src="@drawable/edit"
+                    android:tint="@color/colorWhite"
+                    android:visibility="gone" />
+
+
+                <ImageView
+                    android:id="@+id/imgEditDone"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/margin8"
+                    android:src="@drawable/checkmark"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin8"
+                    android:layout_marginTop="@dimen/margin8"
+                    android:layout_marginEnd="@dimen/margin8"
+                    android:layout_marginBottom="@dimen/margin8"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/left_arrow" />
+
+
+
+                <TextView
+                    android:id="@+id/menuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="WALLET"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:visibility="visible" />
+
+                <!--<TextView
+                    android:id="@+id/tranhistoryTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/grey_chooser_right"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="TRANSACTION HISTORY"
+                    android:textColor="@color/colorlightgrey"
+                    android:textSize="13sp" />
+    -->
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:background="@color/colorYellow"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+
+                <com.robinhood.ticker.TickerView
+                    android:id="@+id/tickerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/colorblack"
+                    android:textSize="@dimen/_28ssp"
+                    app:ticker_animationDuration="1500"
+                    app:ticker_defaultPreferredScrollingDirection="up" />
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_toLeftOf="@id/walletBalance"-->
+<!--                    android:fontFamily="@font/roboto_medium"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="@dimen/_14sdp" />-->
+                <TextView
+                    android:id="@+id/totalBalanceTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="5dp"
+                    android:text="SLL : 0.0"
+                    android:textColor="@color/colorblack"
+                    android:textSize="25sp"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+
+            <!--ADD BALANCE LAYOUT-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rechargemeter"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Select POS ID"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorlightgrey"
+                        android:textSize="@dimen/_8sdp"
+                        android:visibility="gone"/>
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Bank Details"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorlightgrey"
+                        android:textSize="@dimen/_8sdp" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/boarder_lightprimary"
+                        android:paddingBottom="5dp">
+
+                        <Spinner
+                            android:id="@+id/spAccounts"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:spinnerMode="dropdown" />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/down_arrow"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <!--<TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="BANK DETAILS"
+                    android:visibility="gone"
+                    android:textColor="@color/colorlightgrey" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:visibility="gone"
+                    android:background="@drawable/border_lightgrey"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_5sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal"
+
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="BANK NAME: "
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            android:id="@+id/banknameTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="N/A"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal"
+
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="ACCOUNT NAME: "
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            android:id="@+id/accnameTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="N/A"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal"
+
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="ACCOUNT NUMBER: "
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            android:id="@+id/accnumberTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="N/A"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="BBAN: "
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            android:id="@+id/accbbanTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="N/A"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rechargemeter"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="POS NO:"
+                    android:textColor="@color/colorlightgrey" />
+
+
+                <EditText
+                    android:id="@+id/tvPosNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/border_lightgrey"
+                    android:drawablePadding="3dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="start"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="13dp"
+                    android:paddingLeft="13dp"
+                    android:paddingTop="13dp"
+                    android:paddingEnd="13dp"
+                    android:paddingRight="13dp"
+                    android:paddingBottom="13dp"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorlightgrey"
+                    android:textSize="15sp">
+
+                </EditText>
+
+
+            </LinearLayout>
+-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rechargemeter"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="VENDOR NAME"
+                        android:textColor="@color/colorlightgrey" />
+
+
+                    <EditText
+                        android:id="@+id/vendornameET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/border_lightgrey"
+                        android:drawablePadding="3dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="start"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingStart="13dp"
+                        android:paddingLeft="13dp"
+                        android:paddingTop="13dp"
+                        android:paddingEnd="13dp"
+                        android:paddingRight="13dp"
+                        android:paddingBottom="13dp"
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorlightgrey"
+                        android:textSize="15sp">
+
+                    </EditText>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="CHX/CASH"
+                        android:textColor="@color/colorlightgrey"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="VALUE DATE"
+                        android:textColor="@color/colorlightgrey"
+                        android:textSize="@dimen/_8sdp"
+                        android:id="@+id/tv_value_date"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/selectPaytype"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/boarder_lightprimary"
+
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <Spinner
+                            android:id="@+id/typeSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:spinnerMode="dropdown" />
+
+
+                        <ImageView
+                            android:id="@+id/userarrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/down_arrow" />
+                    </RelativeLayout>
+
+                     <LinearLayout
+                         android:id="@+id/ll_date"
+                         android:layout_width="0dp"
+                         android:layout_height="wrap_content"
+                         android:layout_marginLeft="@dimen/_5sdp"
+                         android:layout_marginTop="7dp"
+                         android:layout_weight="1"
+                         android:background="@drawable/boarder_lightprimary"
+                         android:drawablePadding="3dp"
+                         android:gravity="start"
+                         android:textSize="15sp">
+
+                         <TextView
+                             android:id="@+id/et_date"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:drawablePadding="3dp"
+                             android:fontFamily="@font/roboto_bold"
+                             android:maxLines="1"
+                             android:paddingStart="13dp"
+                             android:paddingLeft="13dp"
+                             android:paddingTop="10dp"
+                             android:paddingEnd="10dp"
+                             android:focusable="false"
+                             android:paddingRight="13dp"
+                             android:paddingBottom="10dp"
+                             android:textColor="@color/colorWhite"
+                             android:textColorHint="@color/colorlightgrey"
+                             android:textSize="15sp"
+                             android:layout_weight="1"
+                             android:background="@null"
+                             android:text=""/>
+
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_alignParentRight="true"
+                             android:layout_centerVertical="true"
+                             android:src="@drawable/calender_new"
+                             android:layout_gravity="center"
+                             android:layout_marginLeft="@dimen/_5sdp"
+                             android:layout_marginRight="@dimen/_5sdp"/>
+
+                     </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="CHX # or SLIP ID.  ENTER 0 (ZERO)"
+                    android:textColor="@color/colorlightgrey"
+                    android:textSize="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10ssp" />
+
+                <EditText
+                    android:id="@+id/chxslipET"
+                    android:layout_width="@dimen/_128sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_lightgrey"
+                    android:drawablePadding="3dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="start"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="13dp"
+                    android:paddingLeft="13dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingRight="13dp"
+                    android:paddingBottom="10dp"
+                    android:text="0"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorlightgrey"
+                    android:textSize="15sp">
+
+                </EditText>
+
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/chequeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rechargemeter"
+                    android:layout_marginTop="@dimen/_10ssp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Your Bank"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorlightgrey"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/selectBankName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/boarder_lightprimary"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="13dp"
+                        android:paddingLeft="13dp"
+                        android:paddingBottom="5dp">
+
+                        <Spinner
+                            android:id="@+id/bankNameSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_toStartOf="@+id/bankarrow"
+                            android:layout_toLeftOf="@+id/bankarrow"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:spinnerMode="dropdown" />
+
+                        <ImageView
+                            android:id="@+id/bankarrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingRight="10dp"
+                            android:src="@drawable/down_arrow" />
+                    </LinearLayout>
+
+                    <!-- <EditText
+                         android:id="@+id/bankNameET"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="7dp"
+                         android:background="@drawable/border_lightgrey"
+                         android:drawablePadding="3dp"
+                         android:fontFamily="@font/roboto_bold"
+                         android:gravity="start"
+                         android:imeOptions="actionNext"
+                         android:inputType="text"
+                         android:maxLines="1"
+                         android:paddingStart="13dp"
+                         android:paddingLeft="13dp"
+                         android:paddingTop="13dp"
+                         android:paddingEnd="13dp"
+                         android:paddingRight="13dp"
+                         android:paddingBottom="13dp"
+                         android:textColor="@color/colorWhite"
+                         android:textColorHint="@color/colorlightgrey"
+                         android:textSize="15sp">
+
+                     </EditText>-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="NAME ON CHEQUE"
+                        android:textAllCaps="true"
+                        android:visibility="gone"
+                        android:textColor="@color/colorlightgrey"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <EditText
+                        android:id="@+id/chequeNameET"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/border_lightgrey"
+                        android:drawablePadding="3dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="start"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingStart="13dp"
+                        android:paddingLeft="13dp"
+                        android:paddingTop="13dp"
+                        android:paddingEnd="13dp"
+                        android:paddingRight="13dp"
+                        android:paddingBottom="13dp"
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorlightgrey"
+                        android:textSize="15sp">
+
+                    </EditText>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/slipIDLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rechargemeter"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+
+                </LinearLayout>
+
+
+                <!--   <LinearLayout
+                       android:id="@+id/commissionLL"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@+id/slipIDLL"
+                       android:layout_marginTop="15dp"
+                       android:visibility="gone"
+                       android:orientation="vertical">
+
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:fontFamily="@font/roboto_regular"
+                           android:text="COMMISSION"
+                           android:textColor="@color/colorlightgrey" />
+
+
+                       <TextView
+                           android:id="@+id/tvCommisionPercentage"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="7dp"
+                           android:background="@drawable/border_lightgrey"
+                           android:drawablePadding="3dp"
+                           android:fontFamily="@font/roboto_bold"
+                           android:gravity="start"
+                           android:imeOptions="actionNext"
+                           android:inputType="numberSigned|numberDecimal"
+                           android:maxLines="1"
+                           android:paddingStart="13dp"
+                           android:paddingLeft="13dp"
+                           android:paddingTop="13dp"
+                           android:paddingEnd="13dp"
+                           android:paddingRight="13dp"
+                           android:paddingBottom="13dp"
+                           android:textColor="@color/colorWhite"
+                           android:textColorHint="@color/colorlightgrey"
+                           android:textSize="15sp">
+
+                       </TextView>
+
+
+                   </LinearLayout>-->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_10ssp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="DEPOSIT AMOUNT"
+                        android:textColor="@color/colorlightgrey"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/commissionPercentTV"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="PLUS 1.00\%"
+                        android:visibility="gone"
+                        android:textColor="@color/colorlightgrey"
+                        android:textSize="@dimen/_8sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/depositamountET"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+
+                        android:layout_weight="1.0"
+                        android:background="@drawable/border_lightgrey"
+                        android:drawablePadding="3dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="start"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberSigned|numberDecimal"
+                        android:maxLines="1"
+                        android:maxLength="11"
+                        android:paddingStart="13dp"
+                        android:paddingLeft="13dp"
+                        android:paddingTop="13dp"
+                        android:paddingEnd="13dp"
+                        android:paddingRight="13dp"
+                        android:paddingBottom="13dp"
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorlightgrey"
+                        android:textSize="15sp">
+
+                    </EditText>
+
+                    <TextView
+                        android:id="@+id/plusPercentET"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="3dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="start"
+                        android:paddingStart="13dp"
+                        android:paddingLeft="13dp"
+                        android:paddingTop="13dp"
+                        android:paddingEnd="13dp"
+                        android:paddingRight="13dp"
+                        android:paddingBottom="13dp"
+                        android:textColor="@color/colorred"
+                        android:textColorHint="@color/colorlightgrey"
+                        android:textSize="@dimen/_18sdp">
+
+                    </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rechargemeter"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="COMMENTS"
+                        android:textColor="@color/colorlightgrey" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/border_lightgrey"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/commentET"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:drawablePadding="3dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:gravity="start|top"
+                            android:imeOptions="actionDone"
+                            android:inputType="textMultiLine"
+                            android:paddingStart="13dp"
+                            android:paddingLeft="13dp"
+                            android:paddingTop="13dp"
+                            android:paddingEnd="13dp"
+                            android:paddingRight="13dp"
+                            android:paddingBottom="13dp"
+                            android:text=""
+                            android:textColor="@color/colorWhite"
+                            android:textColorHint="@color/colorlightgrey"
+                            android:textSize="15sp"></EditText>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/sendnowTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/money"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginRight="50dp"
+                        android:background="@drawable/button_yellow"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center"
+                        android:text="ADD FUNDS TO WALLET"
+                        android:textColor="@color/colorblack" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/boarder_lightprimary"
+                    android:paddingStart="13dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
+                    android:visibility="invisible">
+
+                    <Spinner
+                        android:id="@+id/spPosId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:spinnerMode="dropdown" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/down_arrow" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+            <!--TRANSACTION HISTORY LAYOUT-->
+
+            <LinearLayout
+                android:id="@+id/layoutTransactionHistory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <RelativeLayout
+                            android:id="@+id/rechargeTRL"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+
+                            <TextView
+                                android:id="@+id/rechargeText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/regular"
+                                android:text="Recharge"
+                                android:textColor="@color/colorWhite" />
+
+
+                            <View
+                                android:id="@+id/linerecharge"
+                                android:layout_width="40dp"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerInParent="true"
+                                android:background="@color/colorWhite" />
+
+                        </RelativeLayout>
+
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center"
+                            android:background="@color/colorWhite" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/deposItTRL"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+
+                            <TextView
+                                android:id="@+id/depositText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/regular"
+                                android:text="Deposit"
+                                android:textColor="@color/colorWhite" />
+
+
+                            <View
+                                android:id="@+id/linedeposit"
+                                android:layout_width="40dp"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerInParent="true"
+                                android:background="@color/colorWhite" />
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+                    <!--RECHARGE TRANSACTION AND DEPOSIT TRANSACTION LAYOUT-->
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerviewRechargess"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+
+                        <TextView
+                            android:id="@+id/nodataRecharge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/regular"
+                            android:text="No data found!"
+                            android:textColor="@color/colorWhite"
+                            android:visibility="gone" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerviewDepositss"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+
+                        <TextView
+                            android:id="@+id/nodataDeposit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/regular"
+                            android:text="No data found!"
+                            android:textColor="@color/colorWhite"
+                            android:visibility="gone" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

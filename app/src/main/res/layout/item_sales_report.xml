@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:id="@+id/rootView"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/round_chips_home"
+        android:orientation="horizontal">
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                android:weightSum="2">
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/medium"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    android:maxLines="1"
+                    android:text="Electricity Recharge"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/tv_meter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/medium"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    android:maxLines="1"
+                    android:text="Electricity Recharge"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:weightSum="2">
+                <TextView
+                    android:id="@+id/tv_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/medium"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    android:maxLines="1"
+                    android:text="Electricity Recharge"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/tv_transaction_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/medium"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    android:maxLines="1"
+                    android:text="Electricity Recharge"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

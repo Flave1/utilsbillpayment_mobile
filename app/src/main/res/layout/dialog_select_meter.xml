@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/select_saved_meter"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:textSize="@dimen/_18sdp"
+        app:fontFamily="@font/roboto_regular"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:id="@+id/recyclerviewMeter"/>
+
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="@color/colorYellow"
+        android:weightSum="2">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Cancel"
+            android:textColor="@color/colorblack"
+            android:gravity="center"
+            android:textSize="@dimen/_22sdp"
+            app:fontFamily="@font/roboto_regular"
+            android:id="@+id/cancelDialog"/>
+
+    </LinearLayout>
+
+</LinearLayout>

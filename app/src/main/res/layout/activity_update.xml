@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="25dp"
+    tools:context="com.vendtech.app.ui.activity.authentication.UpdateAppVersion">
+
+    <ImageView
+        android:layout_width="321dp"
+        android:layout_height="94dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo_sm" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:fontFamily="@font/medium"
+            android:gravity="center"
+            android:padding="@dimen/padding4"
+            android:paddingBottom="@dimen/_30sdp"
+            android:text="@string/app_update1"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+
+
+    <TextView
+        android:layout_gravity="right"
+        android:id="@+id/loginResetPasscode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+       android:layout_marginRight="@dimen/_15ssp"
+        android:gravity="end"
+        android:padding="@dimen/padding8"
+        android:text="Reset Passcode?"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_12sp"
+        android:visibility="gone"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:background="@drawable/boarder_lightprimary"
+            android:gravity="center"
+            android:padding="@dimen/padding12">
+
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mobile" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin8"
+                android:background="@null"
+                android:fontFamily="@font/regular"
+                android:hint=""
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/regular"
+            android:paddingLeft="@dimen/padding8"
+            android:paddingRight="@dimen/padding8"
+            android:text="MOBILE NUMBER"
+            android:textAllCaps="true"
+            android:textColor="@color/colorlightPrimary"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <!--Email layout-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:background="@drawable/boarder_lightprimary"
+            android:gravity="center"
+            android:padding="@dimen/padding12">
+
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:src="@drawable/mail" />
+
+            <EditText
+                android:id="@+id/emailET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin8"
+                android:background="@null"
+                android:fontFamily="@font/regular"
+                android:hint=""
+                android:imeOptions="actionNext"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/regular"
+            android:paddingLeft="@dimen/padding8"
+            android:paddingRight="@dimen/padding8"
+            android:text="Email"
+            android:textAllCaps="true"
+            android:textColor="@color/colorlightPrimary"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:background="@drawable/boarder_lightprimary"
+            android:gravity="center"
+            android:padding="@dimen/padding12">
+
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:src="@drawable/lock" />
+
+            <EditText
+                android:id="@+id/passwordET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin8"
+                android:background="@null"
+                android:fontFamily="@font/regular"
+                android:hint=""
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/regular"
+            android:paddingLeft="@dimen/padding8"
+            android:paddingRight="@dimen/padding8"
+            android:text="Password"
+            android:textAllCaps="true"
+            android:textColor="@color/colorlightPrimary"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtForgotPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:gravity="end"
+        android:padding="@dimen/padding8"
+        android:text="Forgot Password?"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_12sp"
+        android:visibility="gone" />
+
+    <CheckBox
+        android:id="@+id/rememberMeCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:fontFamily="@font/medium"
+        android:text=" Remember me"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_12sp"
+        android:visibility="gone"
+        app:buttonTint="@color/colorWhite" />
+
+
+    <RelativeLayout
+        android:id="@+id/layoutUpdateApp"
+        android:layout_width="301dp"
+        android:layout_height="75dp"
+        android:padding="@dimen/padding16">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:fontFamily="@font/medium"
+            android:text="@string/update"
+            android:textColor="@color/colorYellow" />
+
+    </RelativeLayout>
+</LinearLayout>

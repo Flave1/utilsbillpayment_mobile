@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlue">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/confirmPayPosID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="POS ID"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_18ssp" />
+
+        <TextView
+            android:id="@+id/confirmPayConfrimText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="PLEASE CONFIRM YOUR PURCHASE"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_14ssp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@color/colorWhite" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/meter2"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/confirmPayMeterValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="000000"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_14ssp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/amount2"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/confirmPayAmtValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="000000"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_26ssp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_yellow"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/colorblack"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/confirmPayCancel"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_weight="1"
+                android:background="@drawable/button_yellow"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="CANCEL"
+                android:textColor="@color/colorblack" />
+
+            <TextView
+                android:id="@+id/confirmPayPayBtn"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/cbSaveMeter"
+                android:layout_weight="1"
+                android:background="@drawable/button_yellow"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="PAY NOW"
+                android:textColor="@color/colorblack" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/confirmFabBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="30dp"
+        android:visibility="gone"
+        android:src="@drawable/back_arrow"
+        app:backgroundTint="@color/colorYellow"
+        app:borderWidth="0dp"
+        app:elevation="6dp"
+        app:fabCustomSize="45dp"
+        app:fabSize="mini" />
+
+
+</RelativeLayout>
+

@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorYellow"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-100dp" />
+
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/filterReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/filter"
+        android:layout_margin="@dimen/_16sdp"/>
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/left_arrow"
+                android:id="@+id/imgBack"
+                android:padding="@dimen/_10sdp"
+                android:layout_margin="@dimen/margin8"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/menuTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/roboto_bold"
+                android:text="REPORTS"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                android:visibility="visible" />
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:src="@drawable/edit"
+                android:id="@+id/imgEdit"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:tint="@color/colorWhite"
+                android:layout_margin="@dimen/margin8"
+                android:visibility="gone"
+                android:layout_height="0dp" />
+
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:src="@drawable/checkmark"
+                android:id="@+id/imgEditDone"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/margin8"
+                android:visibility="gone"
+                android:layout_height="0dp" />
+        </RelativeLayout>
+
+
+        <View android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorYellow"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
+
+
+            <TextView
+                android:id="@+id/addBalanceTV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/yellow_chooser_left"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="ADD BALANCE"
+                android:textColor="@color/colorblack"
+                android:textSize="13sp" />
+
+
+            <TextView
+                android:id="@+id/tranhistoryTV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/grey_chooser_right"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="TRANSACTION HISTORY"
+                android:textColor="@color/colorlightgrey"
+                android:textSize="13sp" />
+
+
+        </LinearLayout>
+
+
+        <!--ADD BALANCE LAYOUT-->
+
+        <ScrollView
+            android:id="@+id/layoutAddBalance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rechargemeter"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="BANK DETAILS"
+                        android:textColor="@color/colorlightgrey" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/border_lightgrey"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal"
+
+                            android:weightSum="10">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="BANK NAME: "
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <TextView
+                                android:id="@+id/banknameTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="N/A"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal"
+
+                            android:weightSum="10">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="ACCOUNT NAME: "
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <TextView
+                                android:id="@+id/accnameTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="N/A"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal"
+
+                            android:weightSum="10">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="ACCOUNT NUMBER: "
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <TextView
+                                android:id="@+id/accnumberTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="N/A"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="BBAN: "
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <TextView
+                                android:id="@+id/accbbanTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="N/A"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rechargemeter"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="VENDOR NAME"
+                        android:textColor="@color/colorlightgrey" />
+
+
+                    <EditText
+                        android:id="@+id/vendornameET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/border_lightgrey"
+                        android:drawablePadding="3dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="start"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingStart="13dp"
+                        android:paddingLeft="13dp"
+                        android:paddingTop="13dp"
+                        android:paddingEnd="13dp"
+                        android:paddingRight="13dp"
+                        android:paddingBottom="13dp"
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorlightgrey"
+                        android:textSize="15sp">
+
+                    </EditText>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rechargemeter"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="CHX/CASH"
+                        android:textColor="@color/colorlightgrey" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/selectPaytype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/boarder_lightprimary"
+                        android:paddingStart="13dp"
+                        android:paddingLeft="13dp"
+                        android:paddingEnd="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <Spinner
+                            android:id="@+id/typeSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_toStartOf="@+id/userarrow"
+                            android:layout_toLeftOf="@+id/userarrow"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:spinnerMode="dropdown" />
+
+
+                        <ImageView
+                            android:id="@+id/userarrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/down_arrow" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rechargemeter"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="CHX # or SLIP ID"
+                        android:textColor="@color/colorlightgrey" />
+
+
+                    <EditText
+                        android:id="@+id/chxslipET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/border_lightgrey"
+                        android:drawablePadding="3dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="start"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingStart="13dp"
+                        android:paddingLeft="13dp"
+                        android:paddingTop="13dp"
+                        android:paddingEnd="13dp"
+                        android:paddingRight="13dp"
+                        android:paddingBottom="13dp"
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorlightgrey"
+                        android:textSize="15sp">
+
+                    </EditText>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rechargemeter"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="DEPOSIT AMOUNT"
+                        android:textColor="@color/colorlightgrey" />
+
+
+                    <EditText
+                        android:id="@+id/depositamountET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/border_lightgrey"
+                        android:drawablePadding="3dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="start"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberSigned|numberDecimal"
+                        android:maxLines="1"
+                        android:paddingStart="13dp"
+                        android:paddingLeft="13dp"
+                        android:paddingTop="13dp"
+                        android:paddingEnd="13dp"
+                        android:paddingRight="13dp"
+                        android:paddingBottom="13dp"
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorlightgrey"
+                        android:textSize="15sp">
+
+                    </EditText>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rechargemeter"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="COMMENTS"
+                        android:textColor="@color/colorlightgrey" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/border_lightgrey"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/commentET"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:drawablePadding="3dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:gravity="start|top"
+                            android:imeOptions="actionDone"
+                            android:inputType="textMultiLine"
+                            android:paddingStart="13dp"
+                            android:paddingLeft="13dp"
+                            android:paddingTop="13dp"
+                            android:paddingEnd="13dp"
+                            android:paddingRight="13dp"
+                            android:paddingBottom="13dp"
+                            android:text=""
+                            android:textColor="@color/colorWhite"
+                            android:textColorHint="@color/colorlightgrey"
+                            android:textSize="15sp"></EditText>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/sendnowTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/money"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginRight="50dp"
+                        android:background="@drawable/button_yellow"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center"
+                        android:text="SEND"
+                        android:textColor="@color/colorblack" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+
+
+        <!--TRANSACTION HISTORY LAYOUT-->
+
+        <LinearLayout
+            android:id="@+id/layoutTransactionHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:id="@+id/rechargeTRL"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+
+                        <TextView
+                            android:id="@+id/rechargeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/regular"
+                            android:text="SALES REPORT "
+                            android:textColor="@color/colorWhite" />
+
+
+                        <View
+                            android:id="@+id/linerecharge"
+                            android:layout_width="40dp"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerInParent="true"
+                            android:background="@color/colorWhite" />
+
+                    </RelativeLayout>
+
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center"
+                        android:background="@color/colorWhite" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/deposItTRL"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+
+                        <TextView
+                            android:id="@+id/depositText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/regular"
+                            android:text="DEPOSITS REPORT"
+                            android:textColor="@color/colorWhite" />
+
+
+                        <View
+                            android:id="@+id/linedeposit"
+                            android:layout_width="40dp"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerInParent="true"
+                            android:background="@color/colorWhite" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+                <!--RECHARGE TRANSACTION AND DEPOSIT TRANSACTION LAYOUT-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerviewRechargess"
+                        android:layout_width="match_parent"
+                        android:layout_height="529dp"
+                        android:layout_marginTop="20dp"
+                        android:visibility="visible">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <TextView
+                        android:id="@+id/nodataRecharge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/regular"
+                        android:text="No data found!"
+                        android:textColor="@color/colorWhite"
+                        android:visibility="gone" />
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerviewDepositss"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <TextView
+                        android:id="@+id/nodataDeposit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/regular"
+                        android:text="No data found!"
+                        android:textColor="@color/colorWhite"
+                        android:visibility="gone" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

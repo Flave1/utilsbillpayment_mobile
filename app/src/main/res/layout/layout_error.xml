@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="70dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center">
+
+    <ImageView android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/no_wifi"/>
+
+
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Something went wrong! Please try again later."
+            android:textColor="@color/colorlightgrey"
+            android:gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="100dp"
+            android:fontFamily="@font/medium"/>
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_yellow"
+            android:text="Retry"
+            android:textColor="@color/colorblack"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:id="@+id/retry"
+            android:paddingEnd="20dp"
+            android:fontFamily="@font/regular"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:textColor="@color/colorWhite"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/backPress"
+            android:paddingEnd="20dp"
+            android:fontFamily="@font/regular"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

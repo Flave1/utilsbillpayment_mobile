@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.reports.ReportActivity">
+
+    <LinearLayout
+        android:id="@+id/layoutTransactionHistory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/rechargeTRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
+                    <TextView
+                        android:id="@+id/rechargeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/regular"
+                        android:text="Recharge"
+                        android:textColor="@color/colorWhite" />
+
+
+                    <View
+                        android:id="@+id/linerecharge"
+                        android:layout_width="40dp"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerInParent="true"
+                        android:background="@color/colorWhite" />
+
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:background="@color/colorWhite" />
+
+
+                <RelativeLayout
+                    android:id="@+id/deposItTRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
+                    <TextView
+                        android:id="@+id/depositText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/regular"
+                        android:text="Deposit"
+                        android:textColor="@color/colorWhite" />
+
+
+                    <View
+                        android:id="@+id/linedeposit"
+                        android:layout_width="40dp"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerInParent="true"
+                        android:background="@color/colorWhite" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+            <!--RECHARGE TRANSACTION AND DEPOSIT TRANSACTION LAYOUT-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerviewRechargess"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/nodataRecharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/regular"
+                    android:text="No data found!"
+                    android:textColor="@color/colorWhite"
+                    android:visibility="gone" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerviewDepositss"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/nodataDeposit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/regular"
+                    android:text="No data found!"
+                    android:textColor="@color/colorWhite"
+                    android:visibility="gone" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

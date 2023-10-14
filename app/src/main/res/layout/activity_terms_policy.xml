@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWhite">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:background="@color/colorYellow"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/left_arrow"
+            android:id="@+id/imgBack"
+          android:padding="@dimen/_10sdp"
+            android:tint="@color/colorblack"
+            android:layout_margin="@dimen/margin8"
+            android:layout_height="wrap_content" />
+
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/colorblack"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="16sp"
+            android:visibility="visible"
+            android:id="@+id/Title"/>
+    </RelativeLayout>
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_conditions"
+            android:textColor="@color/colorblack"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="@dimen/_12ssp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:textAllCaps="true"/>
+
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="@dimen/_10ssp"
+            android:id="@+id/datatextTV"
+            android:text=""
+            android:lineSpacingMultiplier="1.3"
+            />
+
+
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PRIVACY POLICY"
+            android:textColor="@color/colorblack"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:textAllCaps="true"/>
+
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="@dimen/_10ssp"
+            android:id="@+id/datatextPolicyTV"
+            android:text=""
+            android:lineSpacingMultiplier="1.3"
+            />
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
