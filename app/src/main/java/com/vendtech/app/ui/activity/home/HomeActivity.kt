@@ -18,7 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
-import com.vendtech.app.BuildConfig
+//import com.vendtech.app.BuildConfig
 import com.vendtech.app.R
 import com.vendtech.app.helper.SharedHelper
 import com.vendtech.app.models.meter.MeterListResults
@@ -448,7 +448,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
             shareIntent.type = "text/plain"
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, "VendTech")
             var shareMessage = "\nLet me recommend you this application. Please install this application and use my referral code \"$code\" on Sign Up \n\n"
-            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n"
+//            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n"
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
             startActivity(Intent.createChooser(shareIntent, "Choose one"))
         } catch (e: Exception) {
