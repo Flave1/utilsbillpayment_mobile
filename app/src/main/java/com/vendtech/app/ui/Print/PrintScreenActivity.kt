@@ -562,32 +562,34 @@ class PrintScreenActivity : AppCompatActivity() {
             finish();
         }
         tv_print.setOnClickListener {
-            try {
 
-                mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-                if (mBluetoothAdapter == null) {
-                    userThermalprinter()
-                }
-                if (!mBluetoothAdapter.isEnabled) {
-                    val enableBluetooth = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-                    startActivityForResult(enableBluetooth, 0)
-                }
-                val pairedDevices = mBluetoothAdapter.getBondedDevices()
-                if (pairedDevices.size > 0) {
-                    for (device in pairedDevices) {
-
-                        if (device.name == "PT-220") {
-                            mmDevice = device
-                            openBT()
-                            break
-                        }
-                    }
-                }else{
-                    userThermalprinter()
-                }
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
-            }
+            userThermalprinter();
+//            try {
+//
+//                mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+//                if (mBluetoothAdapter == null) {
+//                    userThermalprinter()
+//                }
+//                if (!mBluetoothAdapter.isEnabled) {
+//                    val enableBluetooth = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+//                    startActivityForResult(enableBluetooth, 0)
+//                }
+//                val pairedDevices = mBluetoothAdapter.getBondedDevices()
+//                if (pairedDevices.size > 0) {
+//                    for (device in pairedDevices) {
+//
+//                        if (device.name == "PT-220") {
+//                            mmDevice = device
+//                            openBT()
+//                            break
+//                        }
+//                    }
+//                }else{
+//                    userThermalprinter()
+//                }
+//            } catch (e: java.lang.Exception) {
+//                e.printStackTrace()
+//            }
 
         }
     }
@@ -876,45 +878,48 @@ class PrintScreenActivity : AppCompatActivity() {
 
     private fun userThermalprinter() {
 
-        printContent = "${tv_vendtech_name.text.toString()}\n" +
-                "${tv_edsa.text.toString()}\n" +
-                "--------------------------------------------------------------\n" +
-                "${tv_date_txt.text.toString() + " " + tv_date.text.toString()}\n" +
-                "${tv_vendor_txt.text.toString() + " " + tv_vendor_name.text.toString()}\n" +
-                "${tv_pos_id_txt.text.toString() + " " + tv_pos_id.text.toString()}\n" +
-                "------${tv_custInfo.text.toString() + "------"}\n" +
-                "${tv_customer_txt.text.toString() + " " + tv_cus_name.text.toString()}\n" +
-                "${tv_account_txt.text.toString() + " " + tv_account.text.toString()}\n" +
-                "${tv_meter_txt.text.toString() + " " + tv_meter_number.text.toString()}\n" +
-                "${tv_amt_tend_txt.text.toString() + "               " + tv_amount_tendered.text.toString()}\n" +
-                "------${tv_deduct.text.toString() + "------"}\n" +
-                "${tv_service_charge_txt.text.toString() + "            " + tv_service_charge.text.toString()}\n" +
-                "${tv_debit_recovery_txt.text.toString() + "          " + tv_debit_recovery.text.toString()}\n" +
-                "------${tv_tottext.text.toString() + "------"}\n" +
-                "${tv_cost_of_unit_txt.text.toString() + " " + tv_cost_of_unit.text.toString()}\n" +
-                "${tv_unit_txt.text.toString() + "                " + tv_unit.text.toString()}\n" +
-                "${tv_token.text.toString()}\n" +
-                "${tv_vtech_txt.text.toString() + " " + tv_transaction_id.text.toString()}\n" +
-                "${tv_web_text.text.toString()}\n" +
-                "${tv_phone_no.text.toString()}\n";
+        try {
+            printContent = "${tv_vendtech_name.text.toString()}\n" +
+                    "${tv_edsa.text.toString()}\n" +
+                    "--------------------------------------------------------------\n" +
+                    "${tv_date_txt.text.toString() + " " + tv_date.text.toString()}\n" +
+                    "${tv_vendor_txt.text.toString() + " " + tv_vendor_name.text.toString()}\n" +
+                    "${tv_pos_id_txt.text.toString() + " " + tv_pos_id.text.toString()}\n" +
+                    "------${tv_custInfo.text.toString() + "------"}\n" +
+                    "${tv_customer_txt.text.toString() + " " + tv_cus_name.text.toString()}\n" +
+                    "${tv_account_txt.text.toString() + " " + tv_account.text.toString()}\n" +
+                    "${tv_meter_txt.text.toString() + " " + tv_meter_number.text.toString()}\n" +
+                    "${tv_amt_tend_txt.text.toString() + "               " + tv_amount_tendered.text.toString()}\n" +
+                    "------${tv_deduct.text.toString() + "------"}\n" +
+                    "${tv_service_charge_txt.text.toString() + "            " + tv_service_charge.text.toString()}\n" +
+                    "${tv_debit_recovery_txt.text.toString() + "          " + tv_debit_recovery.text.toString()}\n" +
+                    "------${tv_tottext.text.toString() + "------"}\n" +
+                    "${tv_cost_of_unit_txt.text.toString() + " " + tv_cost_of_unit.text.toString()}\n" +
+                    "${tv_unit_txt.text.toString() + "                " + tv_unit.text.toString()}\n" +
+                    "${tv_token.text.toString()}\n" +
+                    "${tv_vtech_txt.text.toString() + " " + tv_transaction_id.text.toString()}\n" +
+                    "${tv_web_text.text.toString()}\n" +
+                    "${tv_phone_no.text.toString()}\n";
 
 
-        if (printContent == null || printContent!!.length == 0) {
-            Utilities.longToast(getString(R.string.empty), this)
+            if (printContent == null || printContent!!.length == 0) {
+                Utilities.longToast(getString(R.string.empty), this)
 //            return@setOnClickListener
-        }
-
-        if (LowBattery == true) {
-            handler!!.sendMessage(handler!!.obtainMessage(LOWBATTERY, 1, 0, null))
-        } else {
-            if (!nopaper) {
-                progressDialog = ProgressDialog.show(this@PrintScreenActivity, getString(R.string.bl_dy), getString(R.string.printing_wait))
-                handler!!.sendMessage(handler!!.obtainMessage(PRINTCONTENT, 1, 0, null))
-            } else {
-                Toast.makeText(this@PrintScreenActivity, getString(R.string.ptintInit), Toast.LENGTH_LONG).show()
             }
-        }
 
+            if (LowBattery == true) {
+                handler!!.sendMessage(handler!!.obtainMessage(LOWBATTERY, 1, 0, null))
+            } else {
+                if (!nopaper) {
+                    progressDialog = ProgressDialog.show(this@PrintScreenActivity, getString(R.string.bl_dy), getString(R.string.printing_wait))
+                    handler!!.sendMessage(handler!!.obtainMessage(PRINTCONTENT, 1, 0, null))
+                } else {
+                    Toast.makeText(this@PrintScreenActivity, getString(R.string.ptintInit), Toast.LENGTH_LONG).show()
+                }
+            }
+        }catch (ex: java.lang.Exception){
+            ex.message?.let { Utilities.longToast(it,this@PrintScreenActivity) }
+        }
     }
 
     @Throws(IOException::class)
@@ -927,7 +932,6 @@ class PrintScreenActivity : AppCompatActivity() {
             mmOutputStream = mmSocket.getOutputStream()
             mmInputStream = mmSocket.getInputStream()
             beginListenForData()
-            Utilities.longToast("USING BLUETOOTH PRINTER",this@PrintScreenActivity)
         } catch (e: java.lang.Exception) {
             closeBT()
             e.printStackTrace()
