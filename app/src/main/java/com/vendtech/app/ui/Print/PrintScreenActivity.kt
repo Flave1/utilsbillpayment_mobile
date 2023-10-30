@@ -134,7 +134,6 @@ class PrintScreenActivity : AppCompatActivity() {
         dlg.show()
     }
 
-
     inner class MyHandler : Handler() {
         override fun handleMessage(msg: Message) {
             when (msg.what) {
@@ -176,7 +175,6 @@ class PrintScreenActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private inner class contentPrintThread : Thread() {
         override fun run() {
@@ -460,7 +458,6 @@ class PrintScreenActivity : AppCompatActivity() {
         }
     }
 
-
     @Throws(WriterException::class)
     fun CreateCode(str: String?, type: BarcodeFormat?, bmpWidth: Int, bmpHeight: Int): Bitmap? {
         val mHashtable = Hashtable<EncodeHintType, String?>()
@@ -562,33 +559,35 @@ class PrintScreenActivity : AppCompatActivity() {
             finish();
         }
         tv_print.setOnClickListener {
-            userThermalprinter()
-//            try {
-//
-//                mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-//                if (mBluetoothAdapter == null) {
-//                    userThermalprinter()
-//                }
-//                if (!mBluetoothAdapter.isEnabled) {
-//                    val enableBluetooth = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-//                    startActivityForResult(enableBluetooth, 0)
-//                }
-//                val pairedDevices = mBluetoothAdapter.getBondedDevices()
-//                if (pairedDevices.size > 0) {
-//                    for (device in pairedDevices) {
-//
-//                        if (device.name == "PT-220") {
-//                            mmDevice = device
-//                            openBT()
-//                            break
-//                        }
-//                    }
-//                }else{
-//                    userThermalprinter()
-//                }
-//            } catch (e: java.lang.Exception) {
-//                e.printStackTrace()
-//            }
+
+//            userThermalprinter();
+
+            try {
+
+                mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+                if (mBluetoothAdapter == null) {
+                    userThermalprinter()
+                }
+                if (!mBluetoothAdapter.isEnabled) {
+                    val enableBluetooth = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+                    startActivityForResult(enableBluetooth, 0)
+                }
+                val pairedDevices = mBluetoothAdapter.getBondedDevices()
+                if (pairedDevices.size > 0) {
+                    for (device in pairedDevices) {
+
+                        if (device.name == "PT-220") {
+                            mmDevice = device
+                            openBT()
+                            break
+                        }
+                    }
+                }else{
+                    userThermalprinter()
+                }
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
 
         }
     }

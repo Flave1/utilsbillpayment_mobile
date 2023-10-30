@@ -723,7 +723,7 @@
             android:paddingLeft="@dimen/_20sdp"
             android:visibility="visible"
             android:paddingRight="@dimen/_20sdp"
-            android:text="PRINT"
+            android:text="PRINT2"
             android:textSize="@dimen/_12sdp"
             />
 
