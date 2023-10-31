@@ -56,6 +56,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.android.support:multidex:1.0.3'
+
+
     //Image picker
     // implementation 'com.github.dhaval2404:imagepicker-support:1.5'
     //implementation 'com.github.esafirm.android-image-picker:imagepicker:2.0.0'
@@ -98,7 +100,7 @@ dependencies {
     implementation files('libs/telpo_api.jar')
     implementation files('libs/core-3.1.0.jar')
 
-    implementation project(':hpprintsdk')
+//    implementation project(':hpprintsdk')
 
 
     implementation ('com.wdullaer:materialdatetimepicker:4.2.3')

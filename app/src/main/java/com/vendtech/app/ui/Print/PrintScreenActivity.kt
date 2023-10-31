@@ -10,15 +10,14 @@ import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.content.*
 import android.graphics.Bitmap
-import android.os.BatteryManager
-import android.os.Bundle
-import android.os.Handler
-import android.os.Message
+import android.os.*
+import android.print.*
 import android.view.View
 import android.view.Window
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import com.google.gson.Gson
@@ -45,6 +44,7 @@ import kotlinx.android.synthetic.main.sendemaildialog.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -52,6 +52,7 @@ import java.nio.charset.Charset
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
+
 
 class PrintScreenActivity : AppCompatActivity() {
 
@@ -517,6 +518,7 @@ class PrintScreenActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.print_screen_layout)
@@ -560,34 +562,7 @@ class PrintScreenActivity : AppCompatActivity() {
         }
         tv_print.setOnClickListener {
 
-//            userThermalprinter();
-
-            try {
-
-                mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-                if (mBluetoothAdapter == null) {
-                    userThermalprinter()
-                }
-                if (!mBluetoothAdapter.isEnabled) {
-                    val enableBluetooth = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-                    startActivityForResult(enableBluetooth, 0)
-                }
-                val pairedDevices = mBluetoothAdapter.getBondedDevices()
-                if (pairedDevices.size > 0) {
-                    for (device in pairedDevices) {
-
-                        if (device.name == "PT-220") {
-                            mmDevice = device
-                            openBT()
-                            break
-                        }
-                    }
-                }else{
-                    userThermalprinter()
-                }
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
-            }
+//            THIS IS THE CLICK FUNCTION TO IMPLEMENT THE MOBILWIRE MOBILPRINT
 
         }
     }
@@ -917,22 +892,22 @@ class PrintScreenActivity : AppCompatActivity() {
 
     }
 
-    @Throws(IOException::class)
-    fun openBT() {
-        try {
-            // Standard SerialPortService ID
-            val uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb")
-            mmSocket = mmDevice!!.createRfcommSocketToServiceRecord(uuid)
-            mmSocket.connect()
-            mmOutputStream = mmSocket.getOutputStream()
-            mmInputStream = mmSocket.getInputStream()
-            beginListenForData()
-            Utilities.longToast("USING BLUETOOTH PRINTER",this@PrintScreenActivity)
-        } catch (e: java.lang.Exception) {
-            closeBT()
-            e.printStackTrace()
-        }
-    }
+//    @Throws(IOException::class)
+//    fun openBT() {
+//        try {
+//            // Standard SerialPortService ID
+//            val uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb")
+//            mmSocket = mmDevice!!.createRfcommSocketToServiceRecord(uuid)
+//            mmSocket.connect()
+//            mmOutputStream = mmSocket.getOutputStream()
+//            mmInputStream = mmSocket.getInputStream()
+//            beginListenForData()
+//            Utilities.longToast("USING BLUETOOTH PRINTER",this@PrintScreenActivity)
+//        } catch (e: java.lang.Exception) {
+//            closeBT()
+//            e.printStackTrace()
+//        }
+//    }
 
     fun beginListenForData() {
         try {
@@ -1035,4 +1010,5 @@ class PrintScreenActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
 }
