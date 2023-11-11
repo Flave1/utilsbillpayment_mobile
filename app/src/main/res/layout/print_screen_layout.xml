@@ -712,6 +712,20 @@
             android:textSize="@dimen/_12sdp"
             android:visibility="visible" />
         <TextView
+            android:id="@+id/sharepdf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_10ssp"
+            android:background="@drawable/button_gray_prnt"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingRight="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:text="SHARE"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="visible" />
+        <TextView
             android:id="@+id/tv_print"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

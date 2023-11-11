@@ -137,6 +137,14 @@ interface ApiInterface {
     @POST("Report/GetDepositReport")
     fun getDepositReports(@Header("token") token: String, @Field("PosId") posId: Int, @Field("From") from: String, @Field("To") to: String, @Field("Meter") meter: String, @Field("RefNumber") refNumber: String, @Field("TransactionId") transactionId: String, @Field("Bank") bank: String, @Field("DepositType") depositType: Int, @Field("PageNo") pageNo: Int, @Field("RecordsPerPage") recordsPerPage: Int): Call<DepositTransactionNewListModel>
 
+    @FormUrlEncoded
+    @POST("Report/CreateEdsaAsPDF")
+    fun fetch_receipt_as_pdf(@Header("token")token: String, @Field( "Target")target: String): Call<FetchTransactionASPDFModel>
+
+    @FormUrlEncoded
+    @POST("Report/DeleteFileFromDirectory")
+    fun remove_file_from_dir(@Header("token")token: String, @Field("Target")target: String): Call<FetchTransactionASPDFModel>
+
 
     @FormUrlEncoded
     @POST("Deposit/SaveDepositRequest")

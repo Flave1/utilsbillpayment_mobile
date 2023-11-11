@@ -1,19 +1,15 @@
 package com.vendtech.app.ui.Print
 
 
-import android.app.Activity
-import android.app.AlertDialog
-import android.app.Dialog
-import android.app.ProgressDialog
+import android.app.*
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.content.*
+import android.database.Cursor
 import android.graphics.Bitmap
-import android.os.BatteryManager
-import android.os.Bundle
-import android.os.Handler
-import android.os.Message
+import android.net.Uri
+import android.os.*
 import android.view.View
 import android.view.Window
 import android.widget.EditText
@@ -33,6 +29,7 @@ import com.telpo.tps550.api.util.SystemUtil
 import com.vendtech.app.R
 import com.vendtech.app.helper.SharedHelper
 import com.vendtech.app.models.meter.RechargeMeterModel
+import com.vendtech.app.models.transaction.FetchTransactionASPDFModel
 import com.vendtech.app.models.transaction.SendTransactionSmsModel
 import com.vendtech.app.network.Uten
 import com.vendtech.app.utils.Constants
@@ -52,6 +49,7 @@ import java.nio.charset.Charset
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
+
 
 class PrintScreenActivity : AppCompatActivity() {
 
@@ -561,6 +559,9 @@ class PrintScreenActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK);
             finish();
         }
+        sharepdf.setOnClickListener {
+            rechargeTransactionDetailResult?.result?.let { it1 -> FetchPDF(it1.pin1) };
+        }
         tv_print.setOnClickListener {
 
             userThermalprinter();
@@ -875,6 +876,103 @@ class PrintScreenActivity : AppCompatActivity() {
         })
     }
 
+    fun  FetchPDF(transactionId: String){
+
+        var customDialog: CustomDialog
+        customDialog= CustomDialog(this)
+        customDialog.show()
+        val call: Call<FetchTransactionASPDFModel> = Uten.FetchServerData().fetch_receipt_as_pdf(SharedHelper.getString(this,Constants.TOKEN),transactionId)
+        call.enqueue(object : Callback<FetchTransactionASPDFModel> {
+            override fun onResponse(call: Call<FetchTransactionASPDFModel>, response: Response<FetchTransactionASPDFModel>)  {
+
+                if(customDialog.isShowing){
+                    customDialog.dismiss()
+                }
+                var data=response.body()
+//                if(data!=null){
+//                    if(data.status.equals("true")){
+//                        sharePdfUrl(data.result)
+//                    }else{
+//                        Utilities.shortToast("Some Error Occurred",this@PrintScreenActivity)
+//                    }
+//                }
+
+                data?.result?.let { downloadAndOpenPDF(it) }
+            }
+
+            override fun onFailure(call: Call<FetchTransactionASPDFModel>, t: Throwable) {
+                val  gs = Gson()
+                gs.toJson(t.localizedMessage)
+                if(customDialog.isShowing){
+                    customDialog.dismiss()
+                }
+            }
+        })
+    }
+
+    private fun sharePdfUrl(path: String) {
+        var uri = Uri.parse(path)
+        val shareIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            type = "application/pdf"
+            putExtra(Intent.EXTRA_STREAM, uri)
+        }
+//        startActivity(shareIntent); `package` = "com.whatsapp"
+        startActivity(Intent.createChooser(shareIntent, "Share PDF using:"))
+    }
+
+    private fun downloadAndOpenPDF(url: String) {
+        val request = DownloadManager.Request(Uri.parse(url))
+        request.setTitle("PDF Download")
+        request.setDestinationInExternalPublicDir(
+            Environment.DIRECTORY_DOWNLOADS,
+            "recharge.pdf"
+        )
+        val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+        val downloadId = downloadManager.enqueue(request)
+
+        // Monitor the download status if needed
+        // ...
+
+        // Open the PDF after the download is complete
+        val onComplete: BroadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent) {
+                val receivedDownloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+                if (downloadId == receivedDownloadId) {
+                    val filePath: String? = getDownloadedFilePath(downloadId)
+                    if (filePath != null) {
+                        sharePdfUrl(filePath)
+                    }
+                }
+            }
+        }
+        registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+    }
+
+    private fun getDownloadedFilePath(downloadId: Long): String? {
+        val query = DownloadManager.Query()
+        query.setFilterById(downloadId)
+        val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+        val cursor: Cursor = downloadManager.query(query)
+        if (cursor.moveToFirst()) {
+            val columnIndex: Int = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)
+            val filePath: String = cursor.getString(columnIndex)
+            cursor.close()
+            return filePath
+        }
+        cursor.close()
+        return null
+    }
+
+    private fun openPDF(filePath: String?) {
+        if (filePath != null) {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.setDataAndType(Uri.parse(filePath), "application/pdf")
+            startActivity(intent)
+        } else {
+            // Handle error, file not found, etc.
+        }
+    }
 
     private fun userThermalprinter() {
 
