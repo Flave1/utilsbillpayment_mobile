@@ -78,6 +78,7 @@ class BillPaymentActivity : Activity(), View.OnClickListener, NumberListDialogAd
 
     //SERVICE MENU LAYOUT
 
+    lateinit var tvStaticCountryCode: TextView;
     lateinit var serviceLayout: RelativeLayout
     lateinit var servicesRecyclerview: RecyclerView
     lateinit var servicesAdapter: UserServicesAdapter
@@ -201,6 +202,7 @@ class BillPaymentActivity : Activity(), View.OnClickListener, NumberListDialogAd
         confirmPayPayBtn = findViewById<View>(R.id.confirmPayPayBtn) as TextView
         confirmAirtimePayCancel = findViewById<View>(R.id.confirmAirtimePayCancel) as TextView
         confirmAirtimePayBtn = findViewById<View>(R.id.confirmAirtimePayBtn) as TextView
+        tvStaticCountryCode = findViewById<View>(R.id.tvStaticCountryCode) as TextView
 
         payBillTV.setOnClickListener(this)
         payForAirtimeTV.setOnClickListener(this)
@@ -218,6 +220,8 @@ class BillPaymentActivity : Activity(), View.OnClickListener, NumberListDialogAd
         }
 
 
+        var code = SharedHelper.getString(this, Constants.COUNTRY_CODE);
+        tvStaticCountryCode.setText(code)
         payLayout.visibility = View.GONE
         airtimeLayout.visibility = View.GONE
         slide_in = AnimationUtils.loadAnimation(this, R.anim.slide_in)
@@ -327,7 +331,7 @@ class BillPaymentActivity : Activity(), View.OnClickListener, NumberListDialogAd
         var customDialog: CustomDialog
         customDialog = CustomDialog(this)
         customDialog.show()
-
+        var code = SharedHelper.getString(this, Constants.CURRENCY_CODE);
         val call: Call<GetWalletModel> = Uten.FetchServerData().get_wallet_balance(SharedHelper.getString(this, Constants.TOKEN))
         call.enqueue(object : Callback<GetWalletModel> {
             override fun onResponse(call: Call<GetWalletModel>, response: Response<GetWalletModel>) {
@@ -337,14 +341,13 @@ class BillPaymentActivity : Activity(), View.OnClickListener, NumberListDialogAd
                 }
                 var data = response.body()
                 if (data != null) {
-
                     if (data.status.equals("true")) {
 
-                        totalBalanceTV.setText("NLE : " + data.result.balance)
+                        totalBalanceTV.setText(code+ " : " + data.result.balance)
                         tickerViewBalance.setText(NumberFormat.getNumberInstance(Locale.US).format(data.result.balance.toDouble().toInt()))
                         //tickerViewBalance.setText(Utilities.formatCurrencyValue(data.result.balance))
                         totalAvlblBalance = data.result.balance.toDouble()
-                        tickerViewBalance.setText("NLE : " + data.result.balance.toDouble() + "0")
+                        tickerViewBalance.setText(code + " : " + data.result.balance.toDouble() + "0")
                         countInterface?.CountIs(data.result.unReadNotifications)
                     } else {
                         Utilities.CheckSessionValid(data.message, this@BillPaymentActivity, this@BillPaymentActivity)
@@ -399,6 +402,9 @@ class BillPaymentActivity : Activity(), View.OnClickListener, NumberListDialogAd
             }
 
             R.id.payForAirtimeTV -> {
+
+                var minVend = SharedHelper.getString(this, Constants.AIRTIME_MIN_VEND);
+                var code = SharedHelper.getString(this, Constants.CURRENCY_CODE);
                 var moneyValue = airTimeAmtET.text.toString().trim().replace(",", "")
 
                 Log.v("moneyValue", moneyValue)
@@ -410,9 +416,9 @@ class BillPaymentActivity : Activity(), View.OnClickListener, NumberListDialogAd
                 } else if (moneyValue.toDouble() > totalAvlblBalance) {
                     Utilities.shortToast("Recharge amount is greater than the available balance.", this)
                 }
-//                else if (moneyValue.toLong()  <  minVend.toInt()) {
-//                    Utilities.shortToast("PLEASE TENDER SLL: $minVend & ABOVE", this)
-//                }
+                else if (moneyValue.toLong()  <  minVend.toInt()) {
+                    Utilities.shortToast("PLEASE ENTER $code : $minVend & ABOVE", this)
+                }
                 else if (TextUtils.isEmpty(phoneET.text.toString())) {
                     Utilities.shortToast("PHONE NUMBER IS REQUIRED", this)
                 }

@@ -273,6 +273,7 @@
                         android:layout_width="@dimen/_15sdp"
                         android:layout_height="@dimen/_15sdp"
                         android:src="@drawable/dashboard" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -45,7 +45,6 @@ import com.vendtech.app.utils.Utilities
 import kotlinx.android.synthetic.main.activity_transaction_details.*
 import kotlinx.android.synthetic.main.activity_transaction_details.imgBack
 import kotlinx.android.synthetic.main.activity_transaction_details.tv_email
-import kotlinx.android.synthetic.main.activity_transaction_details.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -316,7 +315,8 @@ class RechargeTransactionDetails : Activity(){
             transID.text = transIDS
             vendorIdTrans.text="${result.posId}"
             vendornameTrans.text=result.vendorName
-            amntTrans.text= "SLL: ${NumberFormat.getNumberInstance(Locale.US).format(amountTrans.toDouble().toInt())}"
+            var code = SharedHelper.getString(this, com.vendtech.app.utils.Constants.CURRENCY_CODE)
+            amntTrans.text= "${code}: ${NumberFormat.getNumberInstance(Locale.US).format(amountTrans.toDouble().toInt())}"
 
         tv_token_no.setText(result.rechargePin);
 

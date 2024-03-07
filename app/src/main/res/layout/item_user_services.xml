@@ -14,7 +14,7 @@
         android:layout_marginEnd="@dimen/_4sdp"
         android:layout_marginRight="@dimen/_4sdp"
         android:layout_marginBottom="@dimen/_7sdp"
-        android:background="@drawable/round_chips_home"
+        android:background="@drawable/round_chips_home_white"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="10">
@@ -41,7 +41,7 @@
             android:maxLines="2"
             android:visibility="visible"
             android:text="GAS (AFRICEASSE)"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorblack"
             android:textSize="@dimen/_9ssp" />
         <TextView
             android:id="@+id/disabledTV"
@@ -58,7 +58,7 @@
             android:visibility="gone"
 
             android:text="SERVICE DISABLED"
-            android:textColor="@color/colorYellow"
+            android:textColor="@color/darkgreycolor"
             android:textSize="@dimen/_9ssp" />
 
 

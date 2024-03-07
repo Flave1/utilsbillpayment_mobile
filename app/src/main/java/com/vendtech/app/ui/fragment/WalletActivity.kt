@@ -19,7 +19,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +26,6 @@ import com.google.gson.Gson
 import com.robinhood.ticker.TickerUtils
 import com.robinhood.ticker.TickerView
 import com.vendtech.app.R
-import com.vendtech.app.R.id.tickerView
 import com.vendtech.app.adapter.transactions.DepositTransactionAdapter
 import com.vendtech.app.adapter.transactions.RechargeTransactionAdapter
 import com.vendtech.app.adapter.wallet.AccountAdapter
@@ -37,10 +35,10 @@ import com.vendtech.app.models.meter.PosResultModel
 import com.vendtech.app.models.profile.GetWalletModel
 import com.vendtech.app.models.transaction.*
 import com.vendtech.app.network.Uten
+import com.vendtech.app.ui.activity.home.HomeActivity
 import com.vendtech.app.utils.Constants
 import com.vendtech.app.utils.CustomDialog
 import com.vendtech.app.utils.Utilities
-import kotlinx.android.synthetic.main.fragment_pos_list.*
 import kotlinx.android.synthetic.main.fragment_wallet.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -452,12 +450,26 @@ class WalletActivity : Activity(), View.OnClickListener, DatePickerDialog.OnDate
             /*else if (TextUtils.isEmpty(commentET.text.toString().trim())) {
                 Utilities.shortToast("Please type some comment", requireActivity())
             }*/ else {
-
-                DoDeposit(0);
+                showConfirmationDialog(depositamountET.text.toString())
+//                DoDeposit(0);
                // Utilities.shortToast(""+et_date.text.toString(), requireActivity())
             }
         })
 
+    }
+    fun showConfirmationDialog(amount: String) {
+        val builder = AlertDialog.Builder(this)
+        var code = SharedHelper.getString(this, Constants.CURRENCY_CODE);
+        builder.setTitle("Deposit Confirmation Alert")
+            .setMessage("DO YOU WANT TO ADD ${code} ${amount} TO YOUR WALLET?")
+            .setPositiveButton("Continue") { dialog, which ->
+                DoDeposit(0)
+            }
+            .setNegativeButton("Cancel") { dialog, which ->
+                // User clicked cancel
+                // Add your code to handle the cancel action here
+            }
+            .show()
     }
 
     private fun SetDepositTextChangeListener() {
@@ -590,6 +602,12 @@ if(p0?.length!!>0){
                             Utilities.longToast("FUNDS ADDED TO WALLET\n" +
                                     "APPROVAL ALERT WILL BE SENT SHORTLY", this@WalletActivity)
                             ResetLayoutAddDeposit()
+
+                            Handler().postDelayed({
+                                val i = Intent(this@WalletActivity, HomeActivity::class.java)
+                                startActivity(i)
+                                overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
+                            }, 400)
                         }
 
                     } else {
@@ -1191,14 +1209,10 @@ if(p0?.length!!>0){
         recyclerviewDeposit.visibility = View.GONE
         recyclerviewRecharge.visibility = View.GONE
 
-
         if (recyclerviewDeposit.visibility == View.GONE) {
             recyclerviewDeposit.startAnimation(slide_up)
         }
         recyclerviewDeposit.visibility = View.VISIBLE
-
-
-
 
         recyclerviewDeposit.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -1231,6 +1245,8 @@ if(p0?.length!!>0){
     }
 
     private fun showdialog(amount: String) {
+
+        var code = SharedHelper.getString(this, Constants.CURRENCY_CODE);
         val adDialog = Dialog(this@WalletActivity, R.style.MyDialogThemeBlack);
         adDialog.window!!.requestFeature(Window.FEATURE_NO_TITLE);
         adDialog.setContentView(R.layout.alertwalletdialog);
@@ -1240,7 +1256,7 @@ if(p0?.length!!>0){
         val tv_cancel = adDialog.findViewById<TextView>(R.id.tv_cancel);
 //        val tv_continue = adDialog.findViewById<TextView>(R.id.tv_continue);
 
-        tvpending.setText("NLe: "+ amount)
+        tvpending.setText(code+ " : "+ amount)
 
         tv_cancel.setOnClickListener {
             adDialog.dismiss();
@@ -1256,7 +1272,6 @@ if(p0?.length!!>0){
     }
 
     override fun onResume() {
-
         if (Uten.isInternetAvailable(this)) {
             GetWalletBalance();
         } else {
@@ -1283,6 +1298,7 @@ if(p0?.length!!>0){
         customDialog = CustomDialog(this)
         customDialog.show()
 
+        var code = SharedHelper.getString(this, Constants.CURRENCY_CODE);
         val call: Call<GetWalletModel> = Uten.FetchServerData().get_wallet_balance(SharedHelper.getString(this, Constants.TOKEN))
         call.enqueue(object : Callback<GetWalletModel> {
             override fun onResponse(call: Call<GetWalletModel>, response: Response<GetWalletModel>) {
@@ -1295,11 +1311,12 @@ if(p0?.length!!>0){
 
                     if (data.status.equals("true")) {
 
-                        totalBalanceTV.setText("NLE : " + data.result.balance)
+                        totalBalanceTV.setText(code+" : " + data.result.balance)
                         tickerViewBalance.setText(NumberFormat.getNumberInstance(Locale.US).format(data.result.balance.toDouble().toInt()))
                         //tickerViewBalance.setText(Utilities.formatCurrencyValue(data.result.balance))
 //                        totalAvlblBalance = data.result.balance.toDouble()
-                        tickerViewBalance.setText("NLE : " + data.result.balance.toDouble() + "0")
+
+                        tickerViewBalance.setText("${code} : " + data.result.balance.toDouble() + "0")
 //                        countInterface?.CountIs(data.result.unReadNotifications)
                     } else {
                         Utilities.CheckSessionValid(data.message, this@WalletActivity, this@WalletActivity)
@@ -1317,6 +1334,5 @@ if(p0?.length!!>0){
 
         })
     }
-
 
 }

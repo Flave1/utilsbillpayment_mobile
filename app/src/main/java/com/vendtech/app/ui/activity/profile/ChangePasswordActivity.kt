@@ -24,8 +24,6 @@ import com.vendtech.app.utils.Constants
 import com.vendtech.app.utils.CustomDialog
 import com.vendtech.app.utils.Utilities
 import kotlinx.android.synthetic.main.activity_change_password.*
-import kotlinx.android.synthetic.main.activity_forgot_password.*
-import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

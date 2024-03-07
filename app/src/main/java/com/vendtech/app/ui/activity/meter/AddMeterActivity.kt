@@ -20,7 +20,6 @@ import com.vendtech.app.utils.CustomDialog
 import com.vendtech.app.utils.Utilities
 import kotlinx.android.synthetic.main.activity_add_meter.*
 import kotlinx.android.synthetic.main.activity_add_meter.addressET
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.chaos.view.PinView
 import com.google.gson.Gson
 
 import com.vendtech.app.R
@@ -21,8 +20,6 @@ import com.vendtech.app.network.Uten
 import com.vendtech.app.utils.Constants
 import com.vendtech.app.utils.CustomDialog
 import com.vendtech.app.utils.Utilities
-import kotlinx.android.synthetic.main.activity_add_meter.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

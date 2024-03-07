@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.activity_login.emailET
 import kotlinx.android.synthetic.main.activity_login.passwordET
 import kotlinx.android.synthetic.main.activity_passcode.*
 import kotlinx.android.synthetic.main.activity_passcode.rememberMeCB
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -1,19 +1,15 @@
 package com.vendtech.app.ui.fragment
 
-import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import androidx.recyclerview.widget.RecyclerView
 import android.text.TextUtils
-import android.util.Log
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson

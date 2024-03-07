@@ -724,7 +724,7 @@
             android:paddingBottom="@dimen/_8sdp"
             android:text="SHARE"
             android:textSize="@dimen/_12sdp"
-            android:visibility="visible" />
+            android:visibility="gone" />
         <TextView
             android:id="@+id/tv_print"
             android:layout_width="wrap_content"

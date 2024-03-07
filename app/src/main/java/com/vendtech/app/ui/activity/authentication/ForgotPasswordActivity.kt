@@ -1,16 +1,12 @@
 package com.vendtech.app.ui.activity.authentication
 
-import android.content.Context
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
-import com.chaos.view.PinView
 import com.google.gson.Gson
 
 import com.vendtech.app.R
@@ -24,11 +20,9 @@ import com.vendtech.app.utils.CustomDialog
 import com.vendtech.app.utils.Utilities
 import kotlinx.android.synthetic.main.activity_forgot_password.*
 import kotlinx.android.synthetic.main.activity_forgot_password.emailET
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
 class ForgotPasswordActivity : BaseActivity() {
 

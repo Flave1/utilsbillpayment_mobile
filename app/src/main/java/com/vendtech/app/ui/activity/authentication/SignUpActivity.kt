@@ -24,7 +24,6 @@ import com.vendtech.app.models.authentications.*
 import com.vendtech.app.ui.activity.termspolicies.TermsPoliciesActivity
 import com.vendtech.app.utils.Constants
 import com.vendtech.app.utils.Utilities
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.emailET
 import kotlinx.android.synthetic.main.layout_error.*
 import android.widget.ArrayAdapter

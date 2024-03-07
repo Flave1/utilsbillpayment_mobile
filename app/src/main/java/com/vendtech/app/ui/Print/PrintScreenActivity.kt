@@ -755,7 +755,11 @@ class PrintScreenActivity : AppCompatActivity() {
 
         val tv_send = adDialog.findViewById<TextView>(R.id.tv_send);
         val tv_phone_no = adDialog.findViewById<EditText>(R.id.tv_phone_no);
+        val tv_countryCode = adDialog.findViewById<TextView>(R.id.tvCountryCode);
         val img_close = adDialog.findViewById<AppCompatImageButton>(R.id.img_close);
+
+        var code =  SharedHelper.getString(this,Constants.COUNTRY_CODE)
+        tv_countryCode.setText(code)
 
         img_close.setOnClickListener {
             adDialog.dismiss();
@@ -914,11 +918,12 @@ class PrintScreenActivity : AppCompatActivity() {
         var uri = Uri.parse(path)
         val shareIntent = Intent().apply {
             action = Intent.ACTION_SEND
-            type = "application/pdf"
+            type = "application/jpeg"
+            `package` = "com.whatsapp"
             putExtra(Intent.EXTRA_STREAM, uri)
         }
-//        startActivity(shareIntent); `package` = "com.whatsapp"
-        startActivity(Intent.createChooser(shareIntent, "Share PDF using:"))
+        startActivity(shareIntent);
+//        startActivity(Intent.createChooser(shareIntent, "Share PDF using:"))
     }
 
     private fun downloadAndOpenPDF(url: String) {
@@ -926,7 +931,7 @@ class PrintScreenActivity : AppCompatActivity() {
         request.setTitle("PDF Download")
         request.setDestinationInExternalPublicDir(
             Environment.DIRECTORY_DOWNLOADS,
-            "recharge.pdf"
+            "recharge.jpeg"
         )
         val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         val downloadId = downloadManager.enqueue(request)

@@ -1,16 +1,10 @@
 package com.vendtech.app.ui.activity.authentication
 
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import com.chaos.view.PinView
 
@@ -27,7 +21,6 @@ import com.vendtech.app.utils.Utilities
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.emailET
 import kotlinx.android.synthetic.main.activity_login.passwordET
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -146,7 +139,7 @@ class LoginActivity : BaseActivity() {
         customDialog.show()
 
 
-         val call: Call<SignInResponse> = Uten.FetchServerData().sign_in( pscode, "2.4.3", SharedHelper.getString(this, Constants.DEVICE_TOKEN), Constants.DEVICE_TYPE)
+         val call: Call<SignInResponse> = Uten.FetchServerData().sign_in( pscode, "2.4.4", SharedHelper.getString(this, Constants.DEVICE_TOKEN), Constants.DEVICE_TYPE)
 
         call.enqueue(object : Callback<SignInResponse> {
             override fun onResponse(call: Call<SignInResponse>, response: Response<SignInResponse>) {
@@ -168,10 +161,13 @@ class LoginActivity : BaseActivity() {
                             SharedHelper.putString(this@LoginActivity, Constants.USER_EMAIL, data.result.email)
                             SharedHelper.putString(this@LoginActivity, Constants.USER_ACCOUNT_STATUS, data.result.accountStatus)
                             SharedHelper.putString(this@LoginActivity, Constants.POS_NUMBER, data.result.posNumber)
-                            SharedHelper.putString(this@LoginActivity, Constants.MIN_VEND, data.result.minVend)
                             SharedHelper.putString(this@LoginActivity, Constants.COMMISSION_PERCENTAGE, data.result.percentage)
                             SharedHelper.putString(this@LoginActivity, Constants.PASS_CODE_VALUE,loginFirstPinView.text.toString().trim())
                             SharedHelper.putString(this@LoginActivity, Constants.VENDOR, data.result.vendor)
+                            SharedHelper.putString(this@LoginActivity, Constants.MIN_VEND, data.result.minVend)
+                            SharedHelper.putString(this@LoginActivity, Constants.AIRTIME_MIN_VEND, data.result.airtimeMinVend)
+                            SharedHelper.putString(this@LoginActivity, Constants.COUNTRY_CODE, data.result.countryCode)
+                            SharedHelper.putString(this@LoginActivity, Constants.CURRENCY_CODE, data.result.currencyCode)
                             //var vv=SharedHelper.getString(this@LoginActivity, Constants.PASS_CODE_VALUE)
                             if (data.result.phone != null || data.result.phone == "null") {
                                 SharedHelper.putString(this@LoginActivity, Constants.USER_PHONE, data.result.phone)

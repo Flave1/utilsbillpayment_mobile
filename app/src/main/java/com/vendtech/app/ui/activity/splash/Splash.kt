@@ -25,7 +25,6 @@ import com.vendtech.app.ui.activity.authentication.LoginActivity
 import com.vendtech.app.ui.activity.home.HomeActivity
 import com.vendtech.app.utils.Constants
 import com.vendtech.app.utils.Utilities
-import kotlinx.android.synthetic.main.print_screen_layout.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

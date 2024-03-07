@@ -25,6 +25,7 @@ import com.vendtech.app.models.meter.MeterListResults
 import com.vendtech.app.models.profile.GetWalletModel
 import com.vendtech.app.models.referral.ReferralCodeModel
 import com.vendtech.app.network.Uten
+import com.vendtech.app.ui.activity.authentication.ForgotPasswordActivity
 import com.vendtech.app.ui.activity.authentication.LoginActivity
 import com.vendtech.app.ui.activity.meter.MeterListActivity
 import com.vendtech.app.ui.activity.number.NumberListActivity
@@ -307,11 +308,16 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
                 /* if (drawerLayout!!.isDrawerOpen(Gravity.START))
                      drawerLayout!!.closeDrawer(Gravity.START)*/
 
-                Handler().postDelayed({
-                    val i = Intent(this@HomeActivity, ChangePasswordActivity::class.java)
-                    startActivity(i)
-                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
-                }, 400)
+//                Handler().postDelayed({
+//                    val i = Intent(this@HomeActivity, ChangePasswordActivity::class.java)
+//                    startActivity(i)
+//                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
+//                }, 400)
+
+                SharedHelper.removeUserData(this)
+                SharedHelper.putBoolean(this, Constants.IS_LOGGEDIN, false)
+                GotoForgotPassword()
+                this.finish()
             }
             R.id.tcLL -> {
                 /* if (drawerLayout!!.isDrawerOpen(Gravity.START))
@@ -588,6 +594,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
                             dashboard_add_bill_payment.visibility = GONE
                             var listMenu = ArrayList<String>()
                             listMenu.add(Constants.NAV5_Saved_Meters)
+                            listMenu.add(Constants.NAV5_Saved_Numbers)
                             listMenu.add(Constants.NAV3_Manage_Wallet)
                             listMenu.add(Constants.NAV6_MANAGE_REPORTS)
                             listMenu.add(Constants.NAV7_RESET_PASSCODE)
@@ -595,8 +602,12 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
                             for (i in 0 until listMenu.size) {
                                 for (j in 0 until data.result.size) {
                                     if (listMenu[i].equals(data.result[j].modules, ignoreCase = true)) {
-                                        if (i == 0)
+                                        dashboard_add_bill_payment.visibility = VISIBLE
+                                        meterLL.visibility = VISIBLE
+                                        if (i == 0) {
                                             meterLL.visibility = VISIBLE
+                                            numberLL.visibility = VISIBLE
+                                        }
                                         else if (i == 1)
                                             walletLL.visibility = VISIBLE
                                         else if (i == 2)
@@ -628,12 +639,21 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
 
     }
 
+    fun GotoForgotPassword() {
+
+        val intent = Intent(this@HomeActivity, ForgotPasswordActivity::class.java)
+        startActivity(intent)
+
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
+    }
+
     fun GetWalletBalance() {
 
         var customDialog: CustomDialog
         customDialog = CustomDialog(this)
         customDialog.show()
 
+        var code = SharedHelper.getString(this, Constants.CURRENCY_CODE);
         val call: Call<GetWalletModel> = Uten.FetchServerData().get_wallet_balance(SharedHelper.getString(this, Constants.TOKEN))
         call.enqueue(object : Callback<GetWalletModel> {
             override fun onResponse(call: Call<GetWalletModel>, response: Response<GetWalletModel>) {
@@ -646,7 +666,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
 
                     if (data.status.equals("true")) {
 
-                        totalAvlblBalance.setText("NLe   :  " +data.result.stringBalance)
+                        totalAvlblBalance.setText(code+" :  " +data.result.stringBalance)
 
                     } else {
                         //Utilities.CheckSessionValid(data.message, this@RechargeActivity, this@RechargeActivity)

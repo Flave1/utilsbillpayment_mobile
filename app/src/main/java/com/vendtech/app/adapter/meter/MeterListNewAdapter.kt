@@ -13,7 +13,6 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import com.google.gson.Gson
 import com.vendtech.app.R
-import com.vendtech.app.adapter.meter.MeterListAdapter
 import com.vendtech.app.helper.SharedHelper
 import com.vendtech.app.models.meter.DeleteMeterModel
 import com.vendtech.app.models.meter.MeterListResults

@@ -21,7 +21,6 @@ import com.vendtech.app.utils.Constants
 import com.vendtech.app.utils.CustomDialog
 import com.vendtech.app.utils.Utilities
 import kotlinx.android.synthetic.main.activity_recharge.*
-import kotlinx.android.synthetic.main.fragment_dashboard.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

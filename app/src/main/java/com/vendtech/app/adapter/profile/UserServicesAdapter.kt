@@ -43,11 +43,11 @@ class UserServicesAdapter(internal var context: Context,internal var serviceList
             holder.disabled.visibility = View.GONE;
         }
         if(selectedService.platformId.contentEquals("1")){
-            holder.serviceIcon.setImageResource(R.drawable.light)
+            holder.serviceIcon.setImageResource(R.drawable.edsanew)
         }else if(selectedService.platformId.contentEquals("2")){
             holder.serviceIcon.setImageResource(R.drawable.orange)
         }else if(selectedService.platformId.contentEquals("3")){
-            holder.serviceIcon.setImageResource(R.drawable.africell)
+            holder.serviceIcon.setImageResource(R.drawable.africelnew)
         }else if(selectedService.platformId.contentEquals("4"))
             holder.serviceIcon.setImageResource(R.drawable.qcell)
         else if(selectedService.platformId.contentEquals("7")){

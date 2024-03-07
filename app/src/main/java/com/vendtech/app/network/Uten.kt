@@ -16,7 +16,7 @@ class Uten {
         //live
         val BASE_URL="https://vendtechsl.com/api/";
         //development;
-//         val BASE_URL="https://dev.vendtechsl.com/api/";
+//         val BASE_URL="http://www.vendtechsl.net/api/";
 
         fun FetchServerData(): ApiInterface {
             val retrofit = Retrofit.Builder().baseUrl(BASE_URL).client(httpClient).addConverterFactory(GsonConverterFactory.create()).build()

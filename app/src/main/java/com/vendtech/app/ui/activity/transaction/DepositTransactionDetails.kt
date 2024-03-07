@@ -37,8 +37,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 import java.lang.Exception
-import java.text.NumberFormat
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
@@ -96,7 +94,8 @@ class DepositTransactionDetails : Activity(){
             Glide.with(this).load(R.drawable.wallet_icon).into(rechargeLogoIV)
             rechargeTypeTV.text = "Wallet Recharge"
             transID.text = transIDS
-            amntTrans.text = "SSL : " + amountTrans; //${NumberFormat.getNumberInstance(Locale.US).format(amountTrans.toDouble().toInt())}"
+            var code = SharedHelper.getString(this, Constants.CURRENCY_CODE)
+            amntTrans.text = "${code} : " + amountTrans; //${NumberFormat.getNumberInstance(Locale.US).format(amountTrans.toDouble().toInt())}"
             dateTrans.text = dateTransaction
             statusTrans.text = statusTransaction
             paymodeTrans.text = payMode

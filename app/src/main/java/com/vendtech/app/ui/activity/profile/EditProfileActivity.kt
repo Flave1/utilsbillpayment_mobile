@@ -29,14 +29,12 @@ import com.google.gson.Gson
 
 import com.vendtech.app.R
 import com.vendtech.app.helper.SharedHelper
-import com.vendtech.app.models.authentications.GetCitiesModel
-import com.vendtech.app.models.authentications.GetCountriesModel
-import com.vendtech.app.models.authentications.ResultCities
-import com.vendtech.app.models.authentications.ResultCountries
+import com.vendtech.app.models.authentications.*
 import com.vendtech.app.models.profile.GetProfileModel
 import com.vendtech.app.models.profile.ResultProfile
 import com.vendtech.app.models.profile.UpdateProfileModel
 import com.vendtech.app.network.Uten
+import com.vendtech.app.ui.activity.authentication.LoginActivity
 import com.vendtech.app.ui.activity.home.HomeActivity
 import com.vendtech.app.utils.Constants
 import com.vendtech.app.utils.CustomDialog
@@ -64,6 +62,7 @@ class EditProfileActivity : Activity(), View.OnClickListener {
 
     lateinit var back: ImageView
     lateinit var updateProfileTV: TextView
+    lateinit var deleteProfileTV: TextView
     lateinit var pickImageRL: RelativeLayout
     var TAG = "EditProfileActivty"
     lateinit var customDialog: CustomDialog
@@ -93,10 +92,12 @@ class EditProfileActivity : Activity(), View.OnClickListener {
 
         back = findViewById<View>(R.id.imgBack) as ImageView
         updateProfileTV = findViewById<View>(R.id.updateProfileTV) as TextView
+        deleteProfileTV = findViewById<View>(R.id.deleteProfileTV) as TextView
         pickImageRL = findViewById<View>(R.id.pickImageRL) as RelativeLayout
         back.setOnClickListener(this)
         pickImageRL.setOnClickListener(this)
         updateProfileTV.setOnClickListener(this)
+        deleteProfileTV.setOnClickListener(this)
 
 
         backPress.setOnClickListener(View.OnClickListener {
@@ -159,12 +160,80 @@ class EditProfileActivity : Activity(), View.OnClickListener {
                 }
             }
 
+            R.id.deleteProfileTV -> {
+                ShowAlertForDelete(emailET.text.toString())
+            }
+
             R.id.pickImageRL -> {
                 if (checkAndRequestPermissions()) {
                     SelectImageUploadOption()
                 }
             }
         }
+    }
+
+    fun ShowAlertForDelete(emailET: String) {
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.app_name)
+        builder.setMessage("We're sorry to see you go! If you wish to delete your account information from VendTechSL, please click on confirm")
+        builder.setIcon(R.drawable.appicon)
+        builder.setPositiveButton("Confirm") { dialogInterface, which ->
+
+
+            var customDialog: CustomDialog
+            customDialog = CustomDialog(this)
+            customDialog.show()
+
+
+//            val emailVal = RequestBody.create(MediaType.parse("text/plain"), emailET.text.toString().trim())
+
+            val call: Call<DeleteProfileModel> = Uten.FetchServerData().delete_user(emailET)
+            call.enqueue(object : Callback<DeleteProfileModel> {
+
+                override fun onResponse(call: Call<DeleteProfileModel>, response: Response<DeleteProfileModel>) {
+                    customDialog.dismiss()
+                    var data = response.body()
+
+                    if (data != null) {
+                        Utilities.shortToast(data.message, this@EditProfileActivity)
+                        if (data.status.equals("true")) {
+
+
+                            SharedHelper.removeUserData(this@EditProfileActivity)
+                            SharedHelper.putBoolean(this@EditProfileActivity, Constants.IS_LOGGEDIN, false)
+                            val i = Intent(this@EditProfileActivity, LoginActivity::class.java)
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            startActivity(i)
+                            var vv=SharedHelper.getString(this@EditProfileActivity, Constants.POS_NUMBER)
+                            finish()
+
+
+                        } else {
+
+                            Utilities.CheckSessionValid(data.message, this@EditProfileActivity, this@EditProfileActivity)
+
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<DeleteProfileModel>, t: Throwable) {
+                    customDialog.dismiss()
+                    Utilities.shortToast("Something went wrong!", this@EditProfileActivity)
+                }
+            })
+
+
+
+
+
+        }
+        builder.setNegativeButton("Cancel") { dialogInterface, which ->
+        }
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+
     }
 
 
