@@ -3,7 +3,10 @@ package com.vendtech.app.ui.activity.home
 //import com.vendtech.app.BuildConfig
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Handler
 import android.text.TextUtils
@@ -22,6 +25,7 @@ import com.vendtech.app.BuildConfig
 import com.vendtech.app.R
 import com.vendtech.app.helper.SharedHelper
 import com.vendtech.app.models.meter.MeterListResults
+import com.vendtech.app.models.profile.GetPendingModel
 import com.vendtech.app.models.profile.GetWalletModel
 import com.vendtech.app.models.referral.ReferralCodeModel
 import com.vendtech.app.network.Uten
@@ -29,7 +33,6 @@ import com.vendtech.app.ui.activity.authentication.ForgotPasswordActivity
 import com.vendtech.app.ui.activity.authentication.LoginActivity
 import com.vendtech.app.ui.activity.meter.MeterListActivity
 import com.vendtech.app.ui.activity.number.NumberListActivity
-import com.vendtech.app.ui.activity.profile.ChangePasswordActivity
 import com.vendtech.app.ui.activity.profile.EditProfileActivity
 import com.vendtech.app.ui.activity.profile.NotificationsListActivity
 import com.vendtech.app.ui.activity.termspolicies.ContactUsActivity
@@ -56,6 +59,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
     internal var addMeter: TextView? = null
 
     lateinit var totalAvlblBalance: TextView
+    lateinit var totalPendingBalance: TextView
     //NAVIGATION MENU AND HEADER
 
     lateinit var dashboard_add_bill_payment: LinearLayout
@@ -64,6 +68,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
     lateinit var walletLL: LinearLayout
     lateinit var reportLL: LinearLayout
     lateinit var meterLL: LinearLayout
+    lateinit var pendingDepLV: LinearLayout
     lateinit var numberLL: LinearLayout
     lateinit var changepasswordLL: LinearLayout
     lateinit var fl_count: FrameLayout
@@ -79,6 +84,19 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
     lateinit var posTV: TextView
     lateinit var editUserProfile: ImageView
     lateinit var notificationCountTV: TextView
+
+    private val broadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            GetWalletBalance()
+            Log.v("SOMETHING ","HAPPENED ")
+        }
+    }
+    override fun onDestroy() {
+//        registerReceiver(broadcastReceiver, intentFilter)
+        super.onDestroy()
+        unregisterReceiver(broadcastReceiver)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +114,11 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
 
         //LoadBillPaymentFragment();
          loadDashBoardFragment();
+
+        val intentFilter = IntentFilter("ACTION_UPDATE_VALUE")
+        registerReceiver(broadcastReceiver, intentFilter)
     }
+
 
     fun findViews() {
 
@@ -156,7 +178,9 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
         editUserProfile = navigationView.findViewById<View>(R.id.editUserProfile) as ImageView
         notificationCountTV = navigationView.findViewById<View>(R.id.notificationCountTV) as TextView
         totalAvlblBalance = navigationView.findViewById<View>(R.id.totalAvlblBalance) as TextView
-
+        totalPendingBalance = navigationView.findViewById<View>(R.id.totalPendingBalance) as TextView
+        pendingDepLV = navigationView.findViewById<View>(R.id.pendingDepLV) as LinearLayout
+//        pendingDepLV = findViewById(R.id.pendingDepLV) as LinearLayout
         reportLL.setOnClickListener(this)
 
         posLL.setOnClickListener(this)
@@ -175,7 +199,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
 //        editprofileTV.setOnClickListener(this)
         shareappLL.setOnClickListener(this)
         fl_count.setOnClickListener(this)
-
 
         SetUpProfile()
 
@@ -496,11 +519,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
         headerTitle.visibility = View.GONE
     }
 
-    fun ShowAddMeter() {
-        logoHeader.visibility = View.GONE
-        headerTitle.visibility = View.VISIBLE
-    }
-
     private fun loadDashBoardFragment(){
         ShowLogo()
         val fragment = DashBoardFragment.newInstance();
@@ -586,40 +604,72 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
                     if (data.status.equals("true")) {
                         //DO CODE
                         Log.e("", "");
+
+                        changepassLL.visibility = VISIBLE
+
+                        dashboard_add_bill_payment.visibility = GONE
+                        meterLL.visibility = GONE
+                        numberLL.visibility = GONE
+                        walletLL.visibility = GONE
+                        reportLL.visibility = GONE
+
                         if (data.result.size > 0) {
-                            meterLL.visibility = GONE
-                            walletLL.visibility = GONE
-                            reportLL.visibility = GONE
-                            changepassLL.visibility = GONE
-                            dashboard_add_bill_payment.visibility = GONE
-                            var listMenu = ArrayList<String>()
-                            listMenu.add(Constants.NAV5_Saved_Meters)
-                            listMenu.add(Constants.NAV5_Saved_Numbers)
-                            listMenu.add(Constants.NAV3_Manage_Wallet)
-                            listMenu.add(Constants.NAV6_MANAGE_REPORTS)
-                            listMenu.add(Constants.NAV7_RESET_PASSCODE)
-                            listMenu.add(Constants.NAV4_Bill_Payment)
-                            for (i in 0 until listMenu.size) {
-                                for (j in 0 until data.result.size) {
-                                    if (listMenu[i].equals(data.result[j].modules, ignoreCase = true)) {
-                                        dashboard_add_bill_payment.visibility = VISIBLE
+
+                            for (j in 0 until data.result.size) {
+
+                                if(Constants.NAV4_Bill_Payment.equals(data.result[j].modules)){
+                                    dashboard_add_bill_payment.visibility = VISIBLE
+                                }
+                                if(data.result.any{it.modules == Constants.NAV6_Saved_Numbers}){
+                                    if(Constants.NAV5_Saved_Meters.equals(data.result[j].modules)) {
+                                        meterLL.visibility = GONE
+                                    }else{
                                         meterLL.visibility = VISIBLE
-                                        if (i == 0) {
-                                            meterLL.visibility = VISIBLE
-                                            numberLL.visibility = VISIBLE
-                                        }
-                                        else if (i == 1)
-                                            walletLL.visibility = VISIBLE
-                                        else if (i == 2)
-                                            reportLL.visibility = VISIBLE
-                                        else if (i == 3)
-                                            changepassLL.visibility = VISIBLE
-                                        else if (i == 4)
-                                            dashboard_add_bill_payment.visibility = VISIBLE
-                                        break
                                     }
                                 }
+                                if(data.result.any{it.modules == Constants.NAV6_Saved_Numbers}){
+                                    if(Constants.NAV9_PhoneNumbers.equals(data.result[j].modules)) {
+                                        numberLL.visibility = GONE
+                                    }else{
+                                        numberLL.visibility = VISIBLE
+                                    }
+                                }
+                                if(Constants.NAV3_Manage_Wallet.equals(data.result[j].modules)){
+                                    walletLL.visibility = VISIBLE
+                                }
+                                if(Constants.NAV7_MANAGE_REPORTS.equals(data.result[j].modules)){
+                                    reportLL.visibility = VISIBLE
+                                }
+
                             }
+//                            var listMenu = ArrayList<String>()
+//                            listMenu.add(Constants.NAV5_Saved_Meters)
+//                            listMenu.add(Constants.NAV6_Saved_Numbers)
+//                            listMenu.add(Constants.NAV3_Manage_Wallet)
+//                            listMenu.add(Constants.NAV7_MANAGE_REPORTS)
+//                            listMenu.add(Constants.NAV8_RESET_PASSCODE)
+//                            listMenu.add(Constants.NAV4_Bill_Payment)
+//                            for (i in 0 until listMenu.size) {
+//                                for (j in 0 until data.result.size) {
+//                                    if (listMenu[i].equals(data.result[j].modules, ignoreCase = true)) {
+//                                        dashboard_add_bill_payment.visibility = VISIBLE
+//                                        meterLL.visibility = VISIBLE
+//                                        if (i == 0) {
+//                                            meterLL.visibility = VISIBLE
+//                                            numberLL.visibility = VISIBLE
+//                                        }
+//                                        else if (i == 1)
+//                                            walletLL.visibility = VISIBLE
+//                                        else if (i == 2)
+//                                            reportLL.visibility = VISIBLE
+//                                        else if (i == 3)
+//                                            changepassLL.visibility = VISIBLE
+//                                        else if (i == 4)
+//                                            dashboard_add_bill_payment.visibility = VISIBLE
+//                                        break
+//                                    }
+//                                }
+//                            }
                         }
                     } else {
                         Utilities.CheckSessionValid(data.message, this@HomeActivity, this@HomeActivity)
@@ -663,11 +713,10 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
                 }
                 var data = response.body()
                 if (data != null) {
-
                     if (data.status.equals("true")) {
-
+                        pendingDepLV.visibility = GONE
                         totalAvlblBalance.setText(code+" :  " +data.result.stringBalance)
-
+                        GetPendingBalance()
                     } else {
                         //Utilities.CheckSessionValid(data.message, this@RechargeActivity, this@RechargeActivity)
                     }
@@ -675,6 +724,47 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
             }
 
             override fun onFailure(call: Call<GetWalletModel>, t: Throwable) {
+                val gs = Gson()
+                gs.toJson(t.localizedMessage)
+                if (customDialog.isShowing) {
+                    customDialog.dismiss()
+                }
+            }
+
+        })
+    }
+
+    fun GetPendingBalance() {
+
+        var customDialog: CustomDialog
+        customDialog = CustomDialog(this)
+        customDialog.show()
+
+        var code = SharedHelper.getString(this, Constants.CURRENCY_CODE);
+        val call: Call<GetPendingModel> = Uten.FetchServerData().get_pending_balance(SharedHelper.getString(this, Constants.TOKEN))
+        call.enqueue(object : Callback<GetPendingModel> {
+            override fun onResponse(call: Call<GetPendingModel>, response: Response<GetPendingModel>) {
+
+                if (customDialog.isShowing) {
+                    customDialog.dismiss()
+                }
+                var data = response.body()
+                if (data != null) {
+                    if (data.status.equals("true")) {
+                        if(data.result.isDepositPending){
+                            pendingDepLV.visibility = VISIBLE
+                            totalPendingBalance.setText("pending deposit " +code+" :  " +data.result.pendingDepositBalance)
+                        }else{
+                            totalPendingBalance.setText(code+" :  " +data.result.pendingDepositBalance)
+                            pendingDepLV.visibility = GONE
+                        }
+                    } else {
+                        //Utilities.CheckSessionValid(data.message, this@RechargeActivity, this@RechargeActivity)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<GetPendingModel>, t: Throwable) {
                 val gs = Gson()
                 gs.toJson(t.localizedMessage)
                 if (customDialog.isShowing) {

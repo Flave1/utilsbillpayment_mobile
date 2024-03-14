@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.chaos.view.PinView
+import com.vendtech.app.BuildConfig
 
 import com.vendtech.app.R
 import com.vendtech.app.base.BaseActivity
@@ -16,6 +17,7 @@ import com.vendtech.app.models.profile.GetProfileModel
 import com.vendtech.app.network.Uten
 import com.vendtech.app.ui.activity.home.HomeActivity
 import com.vendtech.app.utils.Constants
+import com.vendtech.app.utils.Constants.Companion.DEVICE_TOKEN
 import com.vendtech.app.utils.CustomDialog
 import com.vendtech.app.utils.Utilities
 import kotlinx.android.synthetic.main.activity_login.*
@@ -39,6 +41,9 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login)
         layoutSignUp = findViewById(R.id.layoutSignUp)
         txtLogin = findViewById(R.id.txtLogin)
+        val versionNameTextView = findViewById<TextView>(R.id.versionNameTextView)
+
+        versionNameTextView.text = BuildConfig.VERSION_NAME
 
         txtForgotPassword = findViewById(R.id.txtForgotPassword)
         loginResetPasscode = findViewById(R.id.loginResetPasscode)
@@ -138,8 +143,8 @@ class LoginActivity : BaseActivity() {
         customDialog.setCancelable(false)
         customDialog.show()
 
-
-         val call: Call<SignInResponse> = Uten.FetchServerData().sign_in( pscode, "2.4.4", SharedHelper.getString(this, Constants.DEVICE_TOKEN), Constants.DEVICE_TYPE)
+        val versionName = BuildConfig.VERSION_NAME
+         val call: Call<SignInResponse> = Uten.FetchServerData().sign_in( pscode, versionName, SharedHelper.getString(this, DEVICE_TOKEN), Constants.DEVICE_TYPE)
 
         call.enqueue(object : Callback<SignInResponse> {
             override fun onResponse(call: Call<SignInResponse>, response: Response<SignInResponse>) {
@@ -150,39 +155,45 @@ class LoginActivity : BaseActivity() {
                     Utilities.shortToast(data.message, this@LoginActivity)
                     if (data.status.equals("true")) {
 
-                        if(data.message == "APP VERSION IS OUT OF DATE, PLEASE UPDATE APP FROM PLAYSTORE"){
-                            GotoAppUpdate()
-                        }else{
-                            SharedHelper.putBoolean(this@LoginActivity, Constants.IS_LOGGEDIN, true)
-                            SharedHelper.putString(this@LoginActivity, Constants.TOKEN, data.result.token)
-                            SharedHelper.putString(this@LoginActivity, Constants.USER_FNAME, data.result.firstName)
-                            SharedHelper.putString(this@LoginActivity, Constants.USER_LNAME, data.result.lastName)
-                            SharedHelper.putString(this@LoginActivity, Constants.USER_ID, data.result.userId)
-                            SharedHelper.putString(this@LoginActivity, Constants.USER_EMAIL, data.result.email)
-                            SharedHelper.putString(this@LoginActivity, Constants.USER_ACCOUNT_STATUS, data.result.accountStatus)
-                            SharedHelper.putString(this@LoginActivity, Constants.POS_NUMBER, data.result.posNumber)
-                            SharedHelper.putString(this@LoginActivity, Constants.COMMISSION_PERCENTAGE, data.result.percentage)
-                            SharedHelper.putString(this@LoginActivity, Constants.PASS_CODE_VALUE,loginFirstPinView.text.toString().trim())
-                            SharedHelper.putString(this@LoginActivity, Constants.VENDOR, data.result.vendor)
-                            SharedHelper.putString(this@LoginActivity, Constants.MIN_VEND, data.result.minVend)
-                            SharedHelper.putString(this@LoginActivity, Constants.AIRTIME_MIN_VEND, data.result.airtimeMinVend)
-                            SharedHelper.putString(this@LoginActivity, Constants.COUNTRY_CODE, data.result.countryCode)
-                            SharedHelper.putString(this@LoginActivity, Constants.CURRENCY_CODE, data.result.currencyCode)
-                            //var vv=SharedHelper.getString(this@LoginActivity, Constants.PASS_CODE_VALUE)
-                            if (data.result.phone != null || data.result.phone == "null") {
-                                SharedHelper.putString(this@LoginActivity, Constants.USER_PHONE, data.result.phone)
-                            } else {
-                                SharedHelper.putString(this@LoginActivity, Constants.USER_PHONE, "")
+                        when (data.message) {
+                            "APP VERSION IS OUT OF DATE, PLEASE UPDATE APP FROM PLAYSTORE" -> {
+                                GotoAppUpdate()
                             }
-                            SharedHelper.putString(this@LoginActivity, Constants.USER_TYPE, data.result.userType)
-                            if (rememberMeCB.isChecked) {
-                                SharedHelper.putBoolean(this@LoginActivity, Constants.IS_REMEMBER_ME, true)
-                                SharedHelper.putString(this@LoginActivity, Constants.REMEMBER_EMAIL, emailET.text.toString().trim())
-                                SharedHelper.putString(this@LoginActivity, Constants.REMEMBER_PASS, passwordET.text.toString().trim())
-                            } else {
-                                SharedHelper.putBoolean(this@LoginActivity, Constants.IS_REMEMBER_ME, false)
+                            "UPDATE_APP" -> {
+                                GotoAppUpdate()
                             }
-                            GetProfile();
+                            else -> {
+                                SharedHelper.putBoolean(this@LoginActivity, Constants.IS_LOGGEDIN, true)
+                                SharedHelper.putString(this@LoginActivity, Constants.TOKEN, data.result.token)
+                                SharedHelper.putString(this@LoginActivity, Constants.USER_FNAME, data.result.firstName)
+                                SharedHelper.putString(this@LoginActivity, Constants.USER_LNAME, data.result.lastName)
+                                SharedHelper.putString(this@LoginActivity, Constants.USER_ID, data.result.userId)
+                                SharedHelper.putString(this@LoginActivity, Constants.USER_EMAIL, data.result.email)
+                                SharedHelper.putString(this@LoginActivity, Constants.USER_ACCOUNT_STATUS, data.result.accountStatus)
+                                SharedHelper.putString(this@LoginActivity, Constants.POS_NUMBER, data.result.posNumber)
+                                SharedHelper.putString(this@LoginActivity, Constants.COMMISSION_PERCENTAGE, data.result.percentage)
+                                SharedHelper.putString(this@LoginActivity, Constants.PASS_CODE_VALUE,loginFirstPinView.text.toString().trim())
+                                SharedHelper.putString(this@LoginActivity, Constants.VENDOR, data.result.vendor)
+                                SharedHelper.putString(this@LoginActivity, Constants.MIN_VEND, data.result.minVend)
+                                SharedHelper.putString(this@LoginActivity, Constants.AIRTIME_MIN_VEND, data.result.airtimeMinVend)
+                                SharedHelper.putString(this@LoginActivity, Constants.COUNTRY_CODE, data.result.countryCode)
+                                SharedHelper.putString(this@LoginActivity, Constants.CURRENCY_CODE, data.result.currencyCode)
+                                //var vv=SharedHelper.getString(this@LoginActivity, Constants.PASS_CODE_VALUE)
+                                if (data.result.phone != null || data.result.phone == "null") {
+                                    SharedHelper.putString(this@LoginActivity, Constants.USER_PHONE, data.result.phone)
+                                } else {
+                                    SharedHelper.putString(this@LoginActivity, Constants.USER_PHONE, "")
+                                }
+                                SharedHelper.putString(this@LoginActivity, Constants.USER_TYPE, data.result.userType)
+                                if (rememberMeCB.isChecked) {
+                                    SharedHelper.putBoolean(this@LoginActivity, Constants.IS_REMEMBER_ME, true)
+                                    SharedHelper.putString(this@LoginActivity, Constants.REMEMBER_EMAIL, emailET.text.toString().trim())
+                                    SharedHelper.putString(this@LoginActivity, Constants.REMEMBER_PASS, passwordET.text.toString().trim())
+                                } else {
+                                    SharedHelper.putBoolean(this@LoginActivity, Constants.IS_REMEMBER_ME, false)
+                                }
+                                GetProfile();
+                            }
                         }
 
                     }else{

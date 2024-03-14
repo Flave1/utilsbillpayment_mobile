@@ -470,10 +470,12 @@
 
                     <TextView
                         android:layout_width="0dp"
+
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/roboto_regular"
                         android:text="VALUE DATE"
+                        android:visibility="gone"
                         android:textColor="@color/colorlightgrey"
                         android:textSize="@dimen/_8sdp"
                         android:id="@+id/tv_value_date"/>
@@ -512,6 +514,7 @@
 
                         <ImageView
                             android:id="@+id/userarrow"
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -522,6 +525,7 @@
                      <LinearLayout
                          android:id="@+id/ll_date"
                          android:layout_width="0dp"
+                         android:visibility="gone"
                          android:layout_height="wrap_content"
                          android:layout_marginLeft="@dimen/_5sdp"
                          android:layout_marginTop="7dp"

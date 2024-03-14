@@ -11,18 +11,26 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
 import com.vendtech.app.R
 import com.vendtech.app.helper.SharedHelper
+import com.vendtech.app.models.profile.GetWalletModel
+import com.vendtech.app.network.Uten
 import com.vendtech.app.ui.activity.home.HomeActivity
 import com.vendtech.app.ui.activity.transaction.DepositTransactionDetails
 import com.vendtech.app.ui.activity.transaction.RechargeTransactionDetails
 import com.vendtech.app.utils.Constants
+import com.vendtech.app.utils.CustomDialog
 import com.vendtech.app.utils.MessageEvent
+import com.vendtech.app.utils.Utilities
 import org.greenrobot.eventbus.EventBus
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
@@ -53,20 +61,25 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                 var intent:Intent
 
+                var code = SharedHelper.getString(this, Constants.CURRENCY_CODE);
                 if(message.data.containsKey("type")){
 
                     if(message.data.get("type").equals("1")){
+                        notifyActivity(message.data.get("id").toString())
                          intent = Intent(this, RechargeTransactionDetails::class.java)
                          intent.putExtra("rechargeId",message.data.get("id"))
                          EventBus.getDefault().post( MessageEvent("update_balance"));
-                         Log.v("DEPOSITID","FCM rechargeId: "+message.data.get("id"))
 
                     }else if(message.data.get("type").equals("2")){
+                        notifyActivity(message.data.get("id").toString())
                         intent = Intent(this, DepositTransactionDetails::class.java)
                         intent.putExtra("depositId",message.data.get("id"))
                         Log.v("DEPOSITID","FCM DepositId: "+message.data.get("id"))
                         EventBus.getDefault().post( MessageEvent("update_balance"));
-                    }else{
+
+
+                    }
+                    else{
                          intent = Intent(this, HomeActivity::class.java)
                         EventBus.getDefault().post( MessageEvent("update_balance"));
                     }
@@ -101,6 +114,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 notificationManager.notify(notificationId, notificationBuilder.build())
             }
         }
+    }
+
+    private fun notifyActivity(value: String) {
+        val intent = Intent("ACTION_UPDATE_VALUE")
+        intent.putExtra("VALUE_KEY", value)
+        sendBroadcast(intent)
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

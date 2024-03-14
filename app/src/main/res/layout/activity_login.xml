@@ -247,7 +247,7 @@
         android:fontFamily="@font/medium"
         android:gravity="center"
         android:padding="@dimen/padding16"
-        android:text="SUBMIT"
+        android:text="LOGIN"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimaryDark"
@@ -285,10 +285,11 @@
 
 
         <TextView
+            android:id="@+id/versionNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/medium"
-            android:text="v:2.4.4"
+            android:text="...."
             android:textColor="@color/colorYellow"
             android:layout_marginLeft="@dimen/_2sdp"/>
 

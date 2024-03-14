@@ -48,9 +48,10 @@ class Constants {
         val NAV3_Manage_Wallet = "Manage Wallet"
         val NAV4_Bill_Payment = "Bill Payment"
         val NAV5_Saved_Meters = "Saved Meters"
-        val NAV5_Saved_Numbers = "Saved Numbers"
-        val NAV6_MANAGE_REPORTS = "MANAGE REPORTS"
-        val NAV7_RESET_PASSCODE = "RESET PASSCODE"
+        val NAV6_Saved_Numbers = "Saved Numbers"
+        val NAV7_MANAGE_REPORTS = "Manage Reports"
+        val NAV8_RESET_PASSCODE = "RESET PASSCODE"
+        val NAV9_PhoneNumbers = "Phone Numbers"
         val DATA = "data"
         val DEPOSIT_SAVED = "Deposit request saved successfully."
         //excel

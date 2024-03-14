@@ -120,6 +120,9 @@ interface ApiInterface {
     @GET("User/GetWalletBalance")
     fun get_wallet_balance(@Header("token") Token: String): Call<GetWalletModel>
 
+    @GET("User/GetPendingBalance")
+    fun get_pending_balance(@Header("token") Token: String): Call<GetPendingModel>
+
     @GET("Account/GetBankAccountsSelectList")
     fun getBankDetail(@Header("token") Token: String): Call<BankResponseModel>
 

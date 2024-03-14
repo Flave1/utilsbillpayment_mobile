@@ -11,7 +11,7 @@
     tools:context="com.vendtech.app.ui.activity.authentication.UpdateAppVersion">
 
     <ImageView
-        android:layout_width="321dp"
+        android:layout_width="250dp"
         android:layout_height="94dp"
         android:layout_gravity="center"
         android:src="@drawable/logo_sm" />

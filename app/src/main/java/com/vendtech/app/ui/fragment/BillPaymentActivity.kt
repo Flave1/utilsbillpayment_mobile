@@ -3,7 +3,10 @@ package com.vendtech.app.ui.fragment
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
@@ -124,6 +127,15 @@ class BillPaymentActivity : Activity(), View.OnClickListener, NumberListDialogAd
     var countInterface: NotificationCount? = null
     var posList = ArrayList<PosResultModel.Result>()
 
+    private val broadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            GetWalletBalance()
+        }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(broadcastReceiver)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,6 +150,9 @@ class BillPaymentActivity : Activity(), View.OnClickListener, NumberListDialogAd
 
         getData();
         tvPosNumber.setText("POS ID : " + SharedHelper.getString(this, Constants.POS_NUMBER))
+
+        val intentFilter = IntentFilter("ACTION_UPDATE_VALUE")
+        registerReceiver(broadcastReceiver, intentFilter)
     }
 
     private fun getData(){

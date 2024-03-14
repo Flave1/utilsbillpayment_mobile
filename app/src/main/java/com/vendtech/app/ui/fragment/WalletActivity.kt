@@ -4,7 +4,10 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
@@ -151,18 +154,15 @@ class WalletActivity : Activity(), View.OnClickListener, DatePickerDialog.OnDate
     var posList = ArrayList<PosResultModel.Result>()
     var depositType = ""
 
-//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//        val view = inflater.inflate(R.layout.fragment_wallet, container, false)
-//
-//        findviews(view)
-//        SetDepositLayout()
-//        GetBankDetails()
-//        GetPosIdList()
-//        GetBankNames()
-//        //  GetBankDetails()
-//
-//        return view
-//    }
+    private val broadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            GetWalletBalance()
+        }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(broadcastReceiver)
+    }
 
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
@@ -179,7 +179,8 @@ class WalletActivity : Activity(), View.OnClickListener, DatePickerDialog.OnDate
          imgBack.setOnClickListener{
              onBackPressed()
          }
-
+         val intentFilter = IntentFilter("ACTION_UPDATE_VALUE")
+         registerReceiver(broadcastReceiver, intentFilter)
     }
 
     private fun GetPaymentTypes() {
@@ -231,13 +232,13 @@ class WalletActivity : Activity(), View.OnClickListener, DatePickerDialog.OnDate
                             val currentDateandTime: String = sdf.format(Date())
                             et_date.setText(currentDateandTime);
 
-                            ll_date.visibility=View.INVISIBLE
+                            ll_date.visibility=View.GONE
                             tv_value_date.visibility=View.GONE
 
                         } else if (transactionMode==2) {
                             transactionMode = 2
                             chequeLayout.visibility = View.VISIBLE;
-                            ll_date.visibility=View.VISIBLE
+                            ll_date.visibility=View.GONE
                             tv_value_date.visibility=View.VISIBLE
                         }else if (transactionMode==3){
                             transactionMode=3;
@@ -245,7 +246,7 @@ class WalletActivity : Activity(), View.OnClickListener, DatePickerDialog.OnDate
                             val sdf = SimpleDateFormat("dd/MM/yyyy")
                             val currentDateandTime: String = sdf.format(Date())
                             et_date.setText(currentDateandTime);
-                            ll_date.visibility=View.INVISIBLE;
+                            ll_date.visibility=View.GONE;
                             tv_value_date.visibility=View.GONE;
                         }else if (transactionMode==4){
                             transactionMode=4;
@@ -253,7 +254,7 @@ class WalletActivity : Activity(), View.OnClickListener, DatePickerDialog.OnDate
                             val sdf = SimpleDateFormat("dd/MM/yyyy")
                             val currentDateandTime: String = sdf.format(Date())
                             et_date.setText(currentDateandTime);
-                            ll_date.visibility=View.INVISIBLE;
+                            ll_date.visibility=View.GONE;
                             tv_value_date.visibility=View.GONE;
                         }
                     }
@@ -688,21 +689,21 @@ if(p0?.length!!>0){
                     val currentDateandTime: String = sdf.format(Date())
                     et_date.setText(currentDateandTime);
 
-                    ll_date.visibility=View.INVISIBLE
+                    ll_date.visibility=View.GONE
                     tv_value_date.visibility=View.GONE
 
                 } else if (position==1) {
                     transactionMode = 2
                     chequeLayout.visibility = View.VISIBLE;
-                    ll_date.visibility=View.VISIBLE
-                    tv_value_date.visibility=View.VISIBLE
+                    ll_date.visibility=View.GONE
+                    tv_value_date.visibility=View.GONE
                 }else if (position==2){
                     transactionMode=3;
                     chequeLayout.visibility = View.GONE
                     val sdf = SimpleDateFormat("dd/MM/yyyy")
                     val currentDateandTime: String = sdf.format(Date())
                     et_date.setText(currentDateandTime);
-                    ll_date.visibility=View.INVISIBLE;
+                    ll_date.visibility=View.GONE;
                     tv_value_date.visibility=View.GONE;
                 }else if (position==3){
                     transactionMode=4;
@@ -710,7 +711,7 @@ if(p0?.length!!>0){
                     val sdf = SimpleDateFormat("dd/MM/yyyy")
                     val currentDateandTime: String = sdf.format(Date())
                     et_date.setText(currentDateandTime);
-                    ll_date.visibility=View.INVISIBLE;
+                    ll_date.visibility=View.GONE;
                     tv_value_date.visibility=View.GONE;
                 }
             }
