@@ -753,7 +753,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, DashBoardFragmen
                     if (data.status.equals("true")) {
                         if(data.result.isDepositPending){
                             pendingDepLV.visibility = VISIBLE
-                            totalPendingBalance.setText("pending deposit " +code+" :  " +data.result.pendingDepositBalance)
+                            totalPendingBalance.setText("PENDING APPROVAL:  " +code+" :  " +data.result.pendingDepositBalance)
                         }else{
                             totalPendingBalance.setText(code+" :  " +data.result.pendingDepositBalance)
                             pendingDepLV.visibility = GONE

@@ -52,10 +52,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="1dp"
                             android:layout_marginBottom="@dimen/_1sdp"
-                            android:background="@drawable/primary_badge"
                             android:fontFamily="@font/medium"
-                            android:paddingLeft="@dimen/_11sdp"
-                            android:paddingRight="@dimen/_11sdp"
                             android:text="10001"
                             android:textAllCaps="true"
                             android:textColor="@color/colorblack"
@@ -171,7 +168,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/medium"
-                            android:text="pending deposit: SLL: 300,000"
+                            android:text="pending approval: SLL: 300,000"
                             android:textSize="14dp"
                             android:gravity="center"
                             android:background="@drawable/warning_bg"
@@ -243,8 +240,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/icon_bg"
-                            android:layout_margin="@dimen/_5sdp"
-                            android:padding="@dimen/_3sdp">
+                            android:layout_margin="@dimen/_1sdp"
+                            android:padding="@dimen/_7sdp">
 
                             <ImageView
                                 android:layout_width="@dimen/_17sdp"
