@@ -162,6 +162,10 @@ class Splash : BaseActivity() {
 
     fun GetProfile(){
 
+        if(!Uten.isInternetAvailable(this)){
+            Utilities.shortToast("No internet connection. Please check your network connectivity.",this@Splash)
+        }
+
         val call:Call<GetProfileModel> = Uten.FetchServerData().get_user_profile(SharedHelper.getString(this,Constants.TOKEN))
         call.enqueue(object : Callback<GetProfileModel> {
             override fun onResponse(call: Call<GetProfileModel>, response: Response<GetProfileModel>) {

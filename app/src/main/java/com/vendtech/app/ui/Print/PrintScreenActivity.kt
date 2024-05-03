@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothSocket
 import android.content.*
 import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.*
 import android.view.View
@@ -23,6 +24,7 @@ import com.google.zxing.EncodeHintType
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
+import com.telpo.tps550.api.printer.Printer.printText
 import com.telpo.tps550.api.printer.UsbThermalPrinter
 import com.telpo.tps550.api.util.StringUtil
 import com.telpo.tps550.api.util.SystemUtil
@@ -36,6 +38,7 @@ import com.vendtech.app.utils.Constants
 import com.vendtech.app.utils.CustomDialog
 import com.vendtech.app.utils.Utilities
 import kotlinx.android.synthetic.main.activity_forgot_password.*
+import kotlinx.android.synthetic.main.dummy.*
 import kotlinx.android.synthetic.main.print_screen_layout.*
 import kotlinx.android.synthetic.main.print_screen_layout.img_close
 import kotlinx.android.synthetic.main.sendemaildialog.*
@@ -59,7 +62,7 @@ class PrintScreenActivity : AppCompatActivity() {
     lateinit var myLabel: TextView
     lateinit var myTextbox: EditText
     lateinit var mBluetoothAdapter: BluetoothAdapter
-    lateinit var mmSocket: BluetoothSocket
+    var mmSocket: BluetoothSocket? = null
     lateinit var mmDevice: BluetoothDevice
     lateinit var openButton: TextView
     lateinit var sendButton: TextView
@@ -106,7 +109,7 @@ class PrintScreenActivity : AppCompatActivity() {
     var barcodeStr: String? = null
     var qrcodeStr: String? = null
     var paperWalk = 10
-    var printContent: String? = null
+
     private val leftDistance = 2
     private val lineDistance = 1
     private val wordFont = 0
@@ -117,11 +120,15 @@ class PrintScreenActivity : AppCompatActivity() {
 
     var handler:MyHandler?=null;
 
+    var FONT_TYPE: Byte = 0
     var rechargeMeterModel: RechargeMeterModel?=null;
 
     private var rechargeTransactionDetailResult: RechargeMeterModel?=null;
 
     private var dialog: ProgressDialog? = null;
+
+    private val btsocket: BluetoothSocket? = null
+    private lateinit var outputStream: OutputStream;
 
     private fun noPaperDlg() {
         val dlg = AlertDialog.Builder(this@PrintScreenActivity)
@@ -182,8 +189,8 @@ class PrintScreenActivity : AppCompatActivity() {
             try {
                 mUsbThermalPrinter.reset();
 
-                /*mUsbThermalPrinter.setAlgin(UsbThermalPrinter.ALGIN_LEFT)
-                mUsbThermalPrinter.setLeftIndent(leftDistance)
+                mUsbThermalPrinter.setAlgin(UsbThermalPrinter.ALGIN_LEFT)
+               /* mUsbThermalPrinter.setLeftIndent(leftDistance)
                 mUsbThermalPrinter.setLineSpace(lineDistance)
                 if (wordFont == 4) {
                     mUsbThermalPrinter.setTextSize(40)
@@ -237,7 +244,7 @@ class PrintScreenActivity : AppCompatActivity() {
                 mUsbThermalPrinter.addString("${tv_customer_txt.text.toString() + "              " + tv_cus_name.text.toString()}");
                 mUsbThermalPrinter.addString("${tv_account_txt.text.toString() + "               " + tv_account.text.toString()}");
 
-    
+
                 // var rightALign= StringAlignUtils(tv_address.text.toString().length, StringAlignUtils.Alignment.RIGHT);
                 //var rightALignTerrif= StringAlignUtils(tv_terrif.text.toString().length, StringAlignUtils.Alignment.RIGHT);
                 mUsbThermalPrinter.setAlgin(UsbThermalPrinter.ALGIN_LEFT);
@@ -564,36 +571,94 @@ class PrintScreenActivity : AppCompatActivity() {
         }
         tv_print.setOnClickListener {
 
-            userThermalprinter();
-//            try {
-//
-//                mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-//                if (mBluetoothAdapter == null) {
-//                    userThermalprinter()
-//                }
-//                if (!mBluetoothAdapter.isEnabled) {
-//                    val enableBluetooth = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-//                    startActivityForResult(enableBluetooth, 0)
-//                }
-//                val pairedDevices = mBluetoothAdapter.getBondedDevices()
-//                if (pairedDevices.size > 0) {
-//                    for (device in pairedDevices) {
-//
-//                        if (device.name == "PT-220") {
-//                            mmDevice = device
-//                            openBT()
-//                            break
-//                        }
-//                    }
-//                }else{
-//                    userThermalprinter()
-//                }
-//            } catch (e: java.lang.Exception) {
-//                e.printStackTrace()
-//            }
-
+            printInfor()
         }
     }
+
+    private  fun printInfor(){
+        try {
+//            printNewLine()
+//            printText("     >>>>   Thank you  <<<<     ", null)
+
+            mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+            if (mBluetoothAdapter == null) {
+                userThermalprinter()
+            }
+            if (!mBluetoothAdapter.isEnabled) {
+                val enableBluetooth = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+                startActivityForResult(enableBluetooth, 0)
+            }
+            val pairedDevices = mBluetoothAdapter.getBondedDevices()
+            if (pairedDevices.size > 0) {
+                for (device in pairedDevices) {
+                    if (device.name == "PT-220") {
+                        mmDevice = device
+                        openBT()
+                        break
+                    }
+                }
+            }else{
+                userThermalprinter()
+            }
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun printCustom(msg: String, size: Int, align: Int) {
+        //Print config "mode"
+        val cc = byteArrayOf(0x1B, 0x21, 0x03) // 0- normal size text
+        val bb = byteArrayOf(0x1B, 0x21, 0x08) // 1- only bold text
+        val bb2 = byteArrayOf(0x1B, 0x21, 0x20) // 2- bold with medium text
+        val bb3 = byteArrayOf(0x1B, 0x21, 0x10) // 3- bold with large text
+        try {
+            when (size) {
+                0 -> mmOutputStream.write(cc)
+                1 -> mmOutputStream.write(bb)
+                2 -> mmOutputStream.write(bb2)
+                3 -> mmOutputStream.write(bb3)
+            }
+            when (align) {
+                0 ->                     //left align
+                    mmOutputStream.write(PrinterCommands.ESC_ALIGN_LEFT)
+                1 ->                     //center align
+                    mmOutputStream.write(PrinterCommands.ESC_ALIGN_CENTER)
+                2 ->                     //right align
+                    mmOutputStream.write(PrinterCommands.ESC_ALIGN_RIGHT)
+            }
+            mmOutputStream!!.write(msg!!.toByteArray())
+            resetPrint()
+
+//            mmOutputStream.write(PrinterCommands.FEED_PAPER_AND_CUT)
+//            resetPrint()
+            Thread.sleep(200)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun printNewLine() {
+        try {
+            mmOutputStream.write(PrinterCommands.FEED_LINE)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun resetPrint() {
+        try {
+            mmOutputStream.write(PrinterCommands.ESC_FONT_COLOR_DEFAULT)
+            mmOutputStream.write(PrinterCommands.FS_FONT_ALIGN)
+//            mmOutputStream.write(PrinterCommands.ESC_ALIGN_CENTER)
+            mmOutputStream.write(PrinterCommands.ESC_CANCEL_BOLD)
+//            mmOutputStream.write(PrinterCommands.FEED_PAPER_AND_CUT)
+//            mmOutputStream.write(PrinterCommands.LF)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+
     private val printReceive: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val action = intent.action
@@ -982,7 +1047,7 @@ class PrintScreenActivity : AppCompatActivity() {
     private fun userThermalprinter() {
 
         try {
-            printContent = "${tv_vendtech_name.text.toString()}\n" +
+            var printContent = "${tv_vendtech_name.text.toString()}\n" +
                     "${tv_edsa.text.toString()}\n" +
                     "--------------------------------------------------------------\n" +
                     "${tv_date_txt.text.toString() + " " + tv_date.text.toString()}\n" +
@@ -1031,9 +1096,9 @@ class PrintScreenActivity : AppCompatActivity() {
             // Standard SerialPortService ID
             val uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb")
             mmSocket = mmDevice!!.createRfcommSocketToServiceRecord(uuid)
-            mmSocket.connect()
-            mmOutputStream = mmSocket.getOutputStream()
-            mmInputStream = mmSocket.getInputStream()
+            mmSocket!!.connect()
+            mmOutputStream = mmSocket!!.getOutputStream()
+            mmInputStream = mmSocket!!.getInputStream()
             beginListenForData()
         } catch (e: java.lang.Exception) {
             closeBT()
@@ -1044,7 +1109,6 @@ class PrintScreenActivity : AppCompatActivity() {
     fun beginListenForData() {
         try {
             val handler = Handler()
-
             // this is the ASCII code for a newline character
             val delimiter: Byte = 15
             stopWorker = false
@@ -1098,31 +1162,106 @@ class PrintScreenActivity : AppCompatActivity() {
     fun sendData() {
         try {
 
-            printContent = "${ "\n\n\n+++++++++++VENDTECH"}\n".replace('+', ' ') +
-                    "${"+++"+tv_edsa.text.toString()}\n".replace('+', ' ') +
-                    "------------------------\n" +
-                    "${tv_date_txt.text.toString() + " +++" + tv_date.text.toString()}\n".replace('+', ' ') +
-                    "${tv_vendor_txt.text.toString() + " +++" + tv_vendor_name.text.toString()}\n".replace('+', ' ') +
-                    "${tv_pos_id_txt.text.toString() + " +++" + tv_pos_id.text.toString()}\n".replace('+', ' ') +
-                    "------${tv_custInfo.text.toString() + "------"}\n" +
-                    "${tv_customer_txt.text.toString() + " +++" + tv_cus_name.text.toString()}\n".replace('+', ' ') +
-                    "${tv_account_txt.text.toString() + " +++" + tv_account.text.toString()}\n".replace('+', ' ') +
-                    "${tv_meter_txt.text.toString() + " +++++++++" + tv_meter_number.text.toString()}\n".replace('+', ' ') +
-                    "${tv_amt_tend_txt.text.toString() + "               " + tv_amount_tendered.text.toString()}\n" +
-                    "---------${tv_deduct.text.toString() + "---------"}\n" +
-                    "${tv_service_charge_txt.text.toString() + "            " + tv_service_charge.text.toString()}\n" +
-                    "${tv_debit_recovery_txt.text.toString() + "          " + tv_debit_recovery.text.toString()}\n" +
-                    "---------${tv_tottext.text.toString() + "---------"}\n" +
-                    "${tv_cost_of_unit_txt.text.toString() + " " + tv_cost_of_unit.text.toString()}\n" +
-                    "${tv_unit_txt.text.toString() + "                " + tv_unit.text.toString()}\n" +
-                    "${tv_token.text.toString()}\n" +
-                    "${tv_vtech_txt.text.toString() + " " + tv_transaction_id.text.toString()}\n" +
-                    "${tv_web_text.text.toString()}\n" +
-                    "${ "\n"+ tv_phone_no.text.toString()}\n\n"
-                    "${ "\n +++++++++++++++ " }\n".replace('+', ' ');
+            printCustom("${"VENDTECH"}", 1 , 1)
+            printNewLine()
+            printCustom("${tv_edsa.text.toString()}", 0 , 1)
+            printNewLine()
+            printCustom("------------------------", 0 , 1)
+            printNewLine()
+            printCustom("Date: ", 0 , 0)
+            printCustom("${tv_date.text}", 0 , 1)
+            printNewLine()
 
-            mmOutputStream!!.write(printContent!!.toByteArray())
-            printContent = "";
+            printCustom("Vendor: ", 0 , 0)
+            printCustom("${tv_vendor_name.text}", 0 , 1)
+            printNewLine()
+
+            printCustom("POS: ", 0 , 0)
+            printCustom("${tv_pos_id.text}", 0 , 0)
+
+            printNewLine()
+            printNewLine()
+            printCustom("------Customer Information------", 0 , 1)
+            printNewLine()
+            printNewLine()
+
+            printCustom("Customer: ", 0 , 0)
+            printCustom("${tv_cus_name.text}", 0 , 2)
+            printNewLine()
+
+            printCustom("Account #: ", 0 , 0)
+            printCustom("${tv_account.text}", 0 , 2)
+            printNewLine()
+
+            printCustom("Address: ", 0 , 0)
+            printCustom("${tv_address.text}", 0 , 2)
+            printNewLine()
+
+            printCustom("Meter #: ", 0 , 0)
+            printCustom("${tv_meter_number.text}", 1 , 2)
+            printNewLine()
+
+            printCustom("Tariff: ", 0 , 0)
+            printCustom("${tv_terrif.text}", 0 , 2)
+            printNewLine()
+
+            printCustom("Amount: ", 0 , 0)
+            printCustom("${tv_amount_tendered.text}", 1 , 2)
+
+
+            printNewLine()
+            printCustom("------ Deductions ------", 0 , 1)
+            printNewLine()
+
+            printCustom("GST: ", 0 , 0)
+            printCustom("${tv_gst.text}", 0 , 2)
+            printNewLine()
+
+            printCustom("Service Delivery: ", 0 , 0)
+            printCustom("${tv_service_charge.text}", 0 , 2)
+            printNewLine()
+
+            printCustom("Debit Delivery: ", 0 , 0)
+            printCustom("${tv_debit_recovery.text}", 0 , 2)
+            printNewLine()
+
+            printNewLine()
+            printCustom("------ Total ------", 0 , 1)
+            printNewLine()
+
+            printCustom("Cost of units: ", 0 , 0)
+            printCustom("${tv_cost_of_unit.text}", 0 , 2)
+            printNewLine()
+
+            printCustom("Units: ", 0 , 0)
+            printCustom("${tv_unit.text}", 0 , 2)
+            printNewLine()
+
+
+
+            printNewLine()
+            printCustom("------------------------", 0 , 1)
+            printNewLine()
+
+            printCustom("${tv_token.text}", 3 , 1)
+
+            printNewLine()
+            printCustom("------------------------", 0 , 1)
+            printNewLine()
+
+
+
+//                    \n" +
+//                    "${tv_vtech_txt.text.toString() + " " + tv_transaction_id.text.toString()}\n" +
+//                    "${tv_web_text.text.toString()}\n" +
+//                    "${ "\n"+ tv_phone_no.text.toString()}\n\n"
+//                    "${ "\n +++++++++++++++ " }\n".replace('+', ' ');
+
+
+
+//            mmOutputStream!!.write(printContent!!.toByteArray())
+//            printContent = "";
+//            printCustom(,0 , 3)
             closeBT()
         } catch (e: java.lang.Exception) {
             e.printStackTrace()

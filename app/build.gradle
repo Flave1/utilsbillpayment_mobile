@@ -8,8 +8,8 @@ android {
         applicationId "com.vendtech.app"
         minSdkVersion 19
         targetSdkVersion 33
-        versionCode 22
-        versionName "2.4.5"
+        versionCode 23
+        versionName "2.4.6"
         // Enabling multidex support.
         multiDexEnabled true
 
@@ -73,7 +73,7 @@ dependencies {
     //Ticker
     implementation 'com.robinhood.ticker:ticker:2.0.2'
     //Event Bus
-    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'org.greenrobot:eventbus:3.3.1'
     //downloader library
     implementation 'com.mindorks.android:prdownloader:0.6.0'
     //FCM
@@ -90,6 +90,9 @@ dependencies {
     //implementation files('libs/core-3.3.3.jar')
 
    // implementation project(':library')
+
+//    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0"
+
 
 
     //printer

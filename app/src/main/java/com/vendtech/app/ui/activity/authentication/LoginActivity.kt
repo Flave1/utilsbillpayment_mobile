@@ -139,6 +139,12 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun performLoginNew(pscode: String) {
+
+        if(!Uten.isInternetAvailable(this)){
+            Utilities.shortToast("No internet connection. Please check your network connectivity.",this@LoginActivity)
+            return
+        }
+
         var customDialog = CustomDialog(this)
         customDialog.setCancelable(false)
         customDialog.show()
@@ -161,6 +167,9 @@ class LoginActivity : BaseActivity() {
                             }
                             "UPDATE_APP" -> {
                                 GotoAppUpdate()
+                            }
+                            "10001" -> {
+                                GotoForgotPassword()
                             }
                             else -> {
                                 SharedHelper.putBoolean(this@LoginActivity, Constants.IS_LOGGEDIN, true)

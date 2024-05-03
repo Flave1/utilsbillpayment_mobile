@@ -45,7 +45,7 @@ interface ApiInterface {
 //    fun sign_in(@Field("Email") email: String,@Field("Password") password:String,@Field("DeviceToken") device_token:String,@Field("AppType") AppType:String):Call<SignInResponse>
 
     @FormUrlEncoded
-    @POST("Account/SignIn")
+    @POST("Account/SignInV2")
     fun sign_in(@Field("passCode") password: String, @Field("AppVersion") AppVersion: String, @Field("DeviceToken") device_token: String, @Field("AppType") AppType: String): Call<SignInResponse>
 
     @FormUrlEncoded
